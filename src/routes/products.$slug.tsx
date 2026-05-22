@@ -11,16 +11,23 @@ export const Route = createFileRoute("/products/$slug")({
     if (!product) throw notFound();
     return { product };
   },
-  head: ({ loaderData }) => ({
+  head: ({ loaderData, params }) => ({
     meta: loaderData
       ? [
           { title: `${loaderData.product.name} — Yingting Smart` },
           { name: "description", content: `${loaderData.product.name} by Yingting Smart — ${loaderData.product.tagline}. Apple HomeKit-ready, designed and installed in Hsinchu.` },
           { property: "og:title", content: `${loaderData.product.name} — Yingting Smart` },
           { property: "og:description", content: `${loaderData.product.tagline}. Apple HomeKit smart home design and installation.` },
-          { property: "og:image", content: loaderData.product.image },
+          { property: "og:image", content: `https://cinematic-reimagine-project.lovable.app${loaderData.product.image}` },
+          { property: "og:url", content: `https://cinematic-reimagine-project.lovable.app/products/${params.slug}` },
           { property: "og:type", content: "product" },
+          { name: "twitter:title", content: `${loaderData.product.name} — Yingting Smart` },
+          { name: "twitter:description", content: `${loaderData.product.tagline}. Apple HomeKit smart home design and installation.` },
+          { name: "twitter:image", content: `https://cinematic-reimagine-project.lovable.app${loaderData.product.image}` },
         ]
+      : [],
+    links: loaderData
+      ? [{ rel: "canonical", href: `https://cinematic-reimagine-project.lovable.app/products/${params.slug}` }]
       : [],
   }),
   notFoundComponent: () => (
