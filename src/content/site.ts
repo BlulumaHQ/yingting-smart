@@ -47,7 +47,7 @@ export const NEWS: NewsItem[] = [
   },
   {
     slug: "homekit-hub-requirement",
-    date: "2026 · 03 · 02",
+    date: "JUN 28, 2024",
     category: "Apple HomeKit Install",
     title: "Do you really need a HomePod or Apple TV to use HomeKit?",
     subtitle: "使用 HomeKit 一定要有 HomePod 或 Apple TV 嗎？",
