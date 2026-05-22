@@ -6,6 +6,7 @@ import iconLine from "@/assets/yt/icon-line.svg";
 import iconFb from "@/assets/yt/icon-fb.svg";
 import iconIg from "@/assets/yt/icon-ig.svg";
 import { CONTACT } from "@/content/site";
+import footerLamp from "@/assets/yt/footer-lamp.png";
 
 const NAV = [
   { n: "01", label: "Home",     zh: "首頁", to: "/#top" },
@@ -114,10 +115,21 @@ export function StickyContact() {
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden bg-foreground text-background">
+    <footer
+      className="relative overflow-hidden text-background"
+      style={{ backgroundColor: "oklch(0.32 0.028 220)" }}
+    >
+      {/* Lamp atmosphere — quiet, almost imperceptible */}
+      <img
+        src={footerLamp}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.18] select-none mix-blend-screen"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-[oklch(0.32_0.028_220/0.55)] to-[oklch(0.28_0.028_220)]" />
       {/* Soft brand glow accents */}
       <div className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full
-                      bg-[radial-gradient(circle_at_center,oklch(0.78_0.085_210/0.35),transparent_70%)]" />
+                      bg-[radial-gradient(circle_at_center,oklch(0.78_0.085_210/0.25),transparent_70%)]" />
       <div className="pointer-events-none absolute -bottom-40 -left-24 h-[380px] w-[380px] rounded-full
                       bg-[radial-gradient(circle_at_center,oklch(0.78_0.085_210/0.18),transparent_70%)]" />
 

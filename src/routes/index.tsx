@@ -8,8 +8,29 @@ import heroB from "@/assets/yt/hero-b.jpg";
 import bgLiving from "@/assets/yt/bg-living.png";
 import bgDisplay from "@/assets/yt/bg-display.png";
 import phoneCutout from "@/assets/yt/phone-cutout.png";
-import frBg01 from "@/assets/yt/fr_bg01.jpg";
-import frBg03 from "@/assets/yt/fr_bg03.jpg";
+import aboutElevator from "@/assets/yt/about-elevator.webp";
+
+/* Subtle brand-tinted line decoration — replaces the brown photographic
+   backdrops with something cohesive to the cyan/teal identity. */
+function LineAccent({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 600 600"
+      className={`pointer-events-none select-none text-accent/25 ${className}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="0.6"
+    >
+      <circle cx="300" cy="300" r="280" />
+      <circle cx="300" cy="300" r="210" />
+      <circle cx="300" cy="300" r="140" />
+      <circle cx="300" cy="300" r="70" />
+      <line x1="0" y1="300" x2="600" y2="300" />
+      <line x1="300" y1="0" x2="300" y2="600" />
+    </svg>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -147,10 +168,9 @@ function Hero() {
 function About() {
   return (
     <section id="about" className="relative py-28 md:py-44 overflow-hidden">
-      {/* Decorative brand-tinted geometric backdrop */}
-      <img src={frBg01} alt="" aria-hidden
-        className="absolute -top-10 right-0 w-[55%] opacity-70 pointer-events-none select-none
-                   [filter:hue-rotate(170deg)_saturate(1.4)]" />
+      {/* Subtle brand line decoration */}
+      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px]" />
+      <div className="pointer-events-none absolute top-1/3 right-0 h-px w-[28%] bg-gradient-to-r from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-12 reveal">
           <div className="text-eyebrow text-accent">— About · 關於我們</div>
@@ -160,7 +180,7 @@ function About() {
           <div className="col-span-12 lg:col-span-5 reveal">
             <div className="sticky top-32">
               <div className="aspect-[4/5] overflow-hidden bg-surface">
-                <img src={heroB} alt="Smart living atmosphere" loading="lazy"
+                <img src={aboutElevator} alt="Yingting Smart home entry — elevator hall with marble flooring" loading="lazy"
                   className="h-full w-full object-cover" />
               </div>
               <div className="mt-5 flex justify-between text-eyebrow text-muted-foreground">
@@ -394,9 +414,8 @@ function Faq() {
 function Insights() {
   return (
     <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
-      <img src={frBg03} alt="" aria-hidden
-        className="absolute top-0 right-0 w-[60%] opacity-60 pointer-events-none select-none
-                   [filter:hue-rotate(170deg)_saturate(1.5)]" />
+      <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px]" />
+      <div className="pointer-events-none absolute top-1/4 left-0 h-px w-[28%] bg-gradient-to-l from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
