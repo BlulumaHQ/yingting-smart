@@ -256,16 +256,19 @@ function About() {
 }
 
 function Systems() {
+  const { t } = useLang();
   return (
-    <section id="systems" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
+    <section id="systems" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-6 items-end mb-20 reveal">
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 md:col-span-8 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— Systems · 智能整合</div>
 
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
-              Three quiet <span className="italic-serif">instruments</span>
-              <br />for one calm home.
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl break-words">
+              {t(
+                <>Smart systems that<br />feel <span className="italic-serif">natural.</span></>,
+                <>自然融入生活的<br /><span className="italic-serif">智慧系統。</span></>
+              )}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
@@ -279,7 +282,7 @@ function Systems() {
               key={s.slug}
               to="/products/$slug"
               params={{ slug: s.slug }}
-              className="group bg-background p-8 md:p-10 flex flex-col reveal hover:bg-surface transition-colors"
+              className="group bg-background p-8 md:p-10 flex flex-col reveal hover:bg-surface transition-colors min-w-0"
             >
               <div className="flex items-baseline justify-between">
                 <span className="text-eyebrow text-accent">0{i + 1}</span>
@@ -291,12 +294,12 @@ function Systems() {
               </div>
               <div className="mt-auto">
                 <div className="text-eyebrow text-muted-foreground mb-2">{s.tagline}</div>
-                <h3 className="text-3xl md:text-[2.25rem] font-light tracking-tight group-hover:text-accent transition-colors">
+                <h3 className="text-3xl md:text-[2.25rem] font-light tracking-tight group-hover:text-accent transition-colors break-words">
                   {s.name}
                 </h3>
-                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3">{s.description}</p>
+                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3 break-words">{s.description}</p>
                 <div className="mt-8 inline-flex items-center gap-2 text-eyebrow text-foreground">
-                  Discover <span className="transition-transform group-hover:translate-x-1">→</span>
+                  {t("Discover", "了解更多")} <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </div>
             </Link>
@@ -305,23 +308,26 @@ function Systems() {
 
         {/* Showroom — uses original lifestyle bg image with transparent phone */}
         <div className="mt-24 md:mt-32 grid grid-cols-12 gap-6 items-center reveal">
-          <div className="col-span-12 md:col-span-5 md:order-2">
+          <div className="col-span-12 md:col-span-5 md:order-2 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— Showroom · 展示中心</div>
-            <h3 className="text-display-md text-3xl md:text-5xl">
-              The daily ritual,
-              <br /><span className="italic-serif">a single touch away.</span>
+            <h3 className="text-display-md text-3xl md:text-5xl break-words">
+              {t(
+                <>The daily ritual,<br /><span className="italic-serif">a single touch away.</span></>,
+                <>日常的儀式，<br /><span className="italic-serif">只在一觸之間。</span></>
+              )}
             </h3>
-            <p className="mt-8 text-muted-foreground leading-[1.85] max-w-md">
-              Scene control, energy management, ambient awareness —
-              composed into one interface so intelligence becomes the quiet
-              backdrop of the space, never the interruption.
+            <p className="mt-8 text-muted-foreground leading-[1.85] max-w-md break-words">
+              {t(
+                "We design Apple HomeKit systems around the way you live — not around devices. Lighting, climate, security and voice control work together quietly, so your home responds without feeling mechanical.",
+                "我們依照你的生活方式規劃 Apple HomeKit 系統，而不是只堆疊設備。燈光、空調、安全與語音控制自然協作，讓家能即時回應，卻不顯得冰冷機械。"
+              )}
             </p>
             <a href="#contact"
               className="mt-10 inline-flex items-center gap-3 text-eyebrow border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-              Book a showroom visit <span>→</span>
+              {t("Book a showroom visit", "預約展示參觀")} <span>→</span>
             </a>
           </div>
-          <div className="col-span-12 md:col-span-7 md:order-1">
+          <div className="col-span-12 md:col-span-7 md:order-1 min-w-0">
             <div className="relative aspect-[5/4] overflow-hidden bg-[var(--color-accent-soft)]/40">
               <img src={bgLiving} alt="Smart living atmosphere" loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover" />
