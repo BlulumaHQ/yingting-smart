@@ -120,9 +120,9 @@ export function SiteFooter() {
           {/* Brand */}
           <div className="col-span-12 md:col-span-5">
             <Link to="/" className="inline-flex items-center" aria-label="Home">
-              <img src={logo} alt="穎庭智能 Yingting Smart" width={56} height={56} className="h-14 w-auto" />
+              <img src={logo} alt="穎庭智能 Yingting Smart" width={160} height={160} className="h-28 md:h-36 w-auto" />
             </Link>
-            <p className="mt-6 max-w-sm text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-8 max-w-sm text-sm text-muted-foreground leading-relaxed">
               Apple HomeKit smart-living design and installation. Quiet technology that makes home feel more like home.
             </p>
             <div className="mt-6 text-[13px] text-muted-foreground">
@@ -133,19 +133,19 @@ export function SiteFooter() {
 
           {/* Explore */}
           <div className="col-span-6 md:col-span-3">
-            <div className="text-eyebrow text-muted-foreground mb-5">Explore</div>
+            <div className="text-eyebrow text-muted-foreground mb-5">Explore · 導覽</div>
             <ul className="space-y-3 text-[14px]">
               <li><a href="/#about" className="hover:text-accent transition-colors">About</a></li>
               <li><a href="/#systems" className="hover:text-accent transition-colors">Systems</a></li>
-              <li><a href="/#journal" className="hover:text-accent transition-colors">Journal</a></li>
               <li><a href="/#faq" className="hover:text-accent transition-colors">FAQ</a></li>
+              <li><a href="/#insights" className="hover:text-accent transition-colors">Insights</a></li>
               <li><a href="/#contact" className="hover:text-accent transition-colors">Contact</a></li>
             </ul>
           </div>
 
           {/* Products */}
           <div className="col-span-6 md:col-span-2">
-            <div className="text-eyebrow text-muted-foreground mb-5">Products</div>
+            <div className="text-eyebrow text-muted-foreground mb-5">Products · 產品</div>
             <ul className="space-y-3 text-[14px]">
               {PRODUCTS.map(p => (
                 <li key={p.slug}>
@@ -159,10 +159,9 @@ export function SiteFooter() {
 
           {/* Contact */}
           <div className="col-span-12 md:col-span-2">
-            <div className="text-eyebrow text-muted-foreground mb-5">Contact</div>
+            <div className="text-eyebrow text-muted-foreground mb-5">Contact · 聯絡</div>
             <ul className="space-y-3 text-[14px]">
               <li><a href={`tel:${CONTACT.phoneIntl}`} className="hover:text-accent">{CONTACT.phone}</a></li>
-              <li><a href={CONTACT.lineUrl} className="hover:text-accent">LINE · {CONTACT.line}</a></li>
               <li className="text-muted-foreground">{CONTACT.hours}</li>
             </ul>
             <div className="mt-6 flex items-center gap-2">
@@ -175,6 +174,7 @@ export function SiteFooter() {
                 <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
                   className="h-9 w-9 grid place-items-center rounded-full bg-accent hover:bg-foreground transition-colors">
                   <img src={s.icon} alt="" className="h-4 w-4" />
+
                 </a>
               ))}
             </div>
