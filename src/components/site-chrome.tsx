@@ -8,10 +8,12 @@ import iconIg from "@/assets/yt/icon-ig.svg";
 import { CONTACT, PRODUCTS, NEWS } from "@/content/site";
 
 const NAV = [
-  { label: "About", to: "/#about" },
-  { label: "Systems", to: "/#systems" },
-  { label: "Journal", to: "/#journal" },
-  { label: "Contact", to: "/#contact" },
+  { n: "01", label: "Home",     zh: "首頁", to: "/#top" },
+  { n: "02", label: "About",    zh: "關於", to: "/#about" },
+  { n: "03", label: "Systems",  zh: "系統", to: "/#systems" },
+  { n: "04", label: "FAQ",      zh: "常見問題", to: "/#faq" },
+  { n: "05", label: "Insights", zh: "洞察", to: "/#insights" },
+  { n: "06", label: "Contact",  zh: "聯絡", to: "/#contact" },
 ];
 
 export function SiteNav() {
@@ -30,16 +32,17 @@ export function SiteNav() {
         scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border" : ""
       }`}
     >
-      <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-4 md:px-12 md:py-5">
+      <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-3 md:px-12 md:py-4">
         <Link to="/" className="flex items-center" aria-label="穎庭智能 — Home">
-          <img src={logo} alt="穎庭智能 Yingting Smart" width={64} height={64}
-            className="h-14 w-auto md:h-16" />
+          <img src={logo} alt="穎庭智能 Yingting Smart" width={96} height={96}
+            className="h-16 w-auto md:h-20" />
         </Link>
-        <nav className="hidden md:flex items-center gap-12">
+        <nav className="hidden md:flex items-center gap-9 lg:gap-11">
           {NAV.map((l) => (
             <a key={l.to} href={l.to}
-              className="text-[13px] tracking-wide text-muted-foreground hover:text-foreground transition-colors">
-              {l.label}
+              className="group inline-flex items-baseline gap-2 text-[13px] tracking-wide text-muted-foreground hover:text-foreground transition-colors">
+              <span className="text-[10px] font-medium tracking-[0.18em] text-accent">{l.n}</span>
+              <span className="font-normal">{l.label}</span>
             </a>
           ))}
         </nav>
@@ -59,7 +62,8 @@ export function SiteNav() {
           <div className="flex flex-col px-6 py-6">
             {NAV.map((l) => (
               <a key={l.to} href={l.to} onClick={() => setOpen(false)}
-                className="py-3 text-2xl font-light tracking-tight">
+                className="py-3 flex items-baseline gap-3 text-2xl font-light tracking-tight">
+                <span className="text-[11px] tracking-[0.2em] text-accent">{l.n}</span>
                 {l.label}
               </a>
             ))}
@@ -70,6 +74,7 @@ export function SiteNav() {
     </header>
   );
 }
+
 
 export function StickyContact() {
   const items = [
@@ -115,9 +120,9 @@ export function SiteFooter() {
           {/* Brand */}
           <div className="col-span-12 md:col-span-5">
             <Link to="/" className="inline-flex items-center" aria-label="Home">
-              <img src={logo} alt="穎庭智能 Yingting Smart" width={56} height={56} className="h-14 w-auto" />
+              <img src={logo} alt="穎庭智能 Yingting Smart" width={160} height={160} className="h-28 md:h-36 w-auto" />
             </Link>
-            <p className="mt-6 max-w-sm text-sm text-muted-foreground leading-relaxed">
+            <p className="mt-8 max-w-sm text-sm text-muted-foreground leading-relaxed">
               Apple HomeKit smart-living design and installation. Quiet technology that makes home feel more like home.
             </p>
             <div className="mt-6 text-[13px] text-muted-foreground">
@@ -128,19 +133,19 @@ export function SiteFooter() {
 
           {/* Explore */}
           <div className="col-span-6 md:col-span-3">
-            <div className="text-eyebrow text-muted-foreground mb-5">Explore</div>
+            <div className="text-eyebrow text-muted-foreground mb-5">Explore · 導覽</div>
             <ul className="space-y-3 text-[14px]">
               <li><a href="/#about" className="hover:text-accent transition-colors">About</a></li>
               <li><a href="/#systems" className="hover:text-accent transition-colors">Systems</a></li>
-              <li><a href="/#journal" className="hover:text-accent transition-colors">Journal</a></li>
               <li><a href="/#faq" className="hover:text-accent transition-colors">FAQ</a></li>
+              <li><a href="/#insights" className="hover:text-accent transition-colors">Insights</a></li>
               <li><a href="/#contact" className="hover:text-accent transition-colors">Contact</a></li>
             </ul>
           </div>
 
           {/* Products */}
           <div className="col-span-6 md:col-span-2">
-            <div className="text-eyebrow text-muted-foreground mb-5">Products</div>
+            <div className="text-eyebrow text-muted-foreground mb-5">Products · 產品</div>
             <ul className="space-y-3 text-[14px]">
               {PRODUCTS.map(p => (
                 <li key={p.slug}>
@@ -154,10 +159,9 @@ export function SiteFooter() {
 
           {/* Contact */}
           <div className="col-span-12 md:col-span-2">
-            <div className="text-eyebrow text-muted-foreground mb-5">Contact</div>
+            <div className="text-eyebrow text-muted-foreground mb-5">Contact · 聯絡</div>
             <ul className="space-y-3 text-[14px]">
               <li><a href={`tel:${CONTACT.phoneIntl}`} className="hover:text-accent">{CONTACT.phone}</a></li>
-              <li><a href={CONTACT.lineUrl} className="hover:text-accent">LINE · {CONTACT.line}</a></li>
               <li className="text-muted-foreground">{CONTACT.hours}</li>
             </ul>
             <div className="mt-6 flex items-center gap-2">
@@ -170,6 +174,7 @@ export function SiteFooter() {
                 <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
                   className="h-9 w-9 grid place-items-center rounded-full bg-accent hover:bg-foreground transition-colors">
                   <img src={s.icon} alt="" className="h-4 w-4" />
+
                 </a>
               ))}
             </div>

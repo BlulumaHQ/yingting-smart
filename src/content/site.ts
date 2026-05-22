@@ -19,7 +19,7 @@ export type NewsItem = {
 export const NEWS: NewsItem[] = [
   {
     slug: "homekit-power-outage",
-    date: "2026 · 03 · 02",
+    date: "MAR 12, 2024",
     category: "Smart Home Planning",
     title: "What happens to your smart home during a power outage?",
     subtitle: "智能家居如遇停電要怎麼辦？ 智能家居規劃｜新竹智能家居規劃",
@@ -47,7 +47,7 @@ export const NEWS: NewsItem[] = [
   },
   {
     slug: "homekit-hub-requirement",
-    date: "2026 · 03 · 02",
+    date: "JUN 28, 2024",
     category: "Apple HomeKit Install",
     title: "Do you really need a HomePod or Apple TV to use HomeKit?",
     subtitle: "使用 HomeKit 一定要有 HomePod 或 Apple TV 嗎？",
@@ -72,7 +72,7 @@ export const NEWS: NewsItem[] = [
   },
   {
     slug: "what-is-apple-homekit",
-    date: "2026 · 03 · 02",
+    date: "SEP 03, 2024",
     category: "Apple Smart Home",
     title: "What is Apple HomeKit?",
     subtitle: "什麼是 Apple HomeKit？Apple 智能家居安裝",
@@ -100,7 +100,7 @@ export const NEWS: NewsItem[] = [
   },
   {
     slug: "smart-home-for-older-homes",
-    date: "2026 · 03 · 02",
+    date: "JAN 15, 2025",
     category: "Home Renovation",
     title: "Can older homes be upgraded to a smart home?",
     subtitle: "舊屋可以裝智能家居嗎？ 智能家居改造",
