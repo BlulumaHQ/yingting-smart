@@ -19,7 +19,7 @@ export type NewsItem = {
 export const NEWS: NewsItem[] = [
   {
     slug: "homekit-power-outage",
-    date: "2026 · 03 · 02",
+    date: "MAR 12, 2024",
     category: "Smart Home Planning",
     title: "What happens to your smart home during a power outage?",
     subtitle: "智能家居如遇停電要怎麼辦？ 智能家居規劃｜新竹智能家居規劃",
