@@ -206,6 +206,7 @@ function Systems() {
         <div className="grid grid-cols-12 gap-6 items-end mb-20 reveal">
           <div className="col-span-12 md:col-span-8">
             <div className="text-eyebrow text-accent mb-6">— Systems · 智能整合</div>
+
             <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
               Three quiet <span className="italic-serif">instruments</span>
               <br />for one calm home.
