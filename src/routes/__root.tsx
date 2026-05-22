@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { LangProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -73,16 +72,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Yingting Smart | Apple HomeKit Smart Home Design — 穎庭國際智能科技" },
-      { name: "description", content: "Apple HomeKit smart home design and installation studio in Hsinchu. Lighting, climate and voice composed into one calm, intelligent home." },
-      { name: "author", content: "Yingting Smart" },
-      { property: "og:site_name", content: "Yingting Smart" },
+      { title: "Ying Ting Smart Home" },
+      { name: "description", content: "Elite Home Aesthetic is a website redesign focused on premium visual presentation for smart home technology." },
+      { name: "author", content: "Lovable" },
+      { property: "og:title", content: "Ying Ting Smart Home" },
+      { property: "og:description", content: "Elite Home Aesthetic is a website redesign focused on premium visual presentation for smart home technology." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Ying Ting Smart Home" },
+      { name: "twitter:description", content: "Elite Home Aesthetic is a website redesign focused on premium visual presentation for smart home technology." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bCCMipaZMMgU3uzBQ48gKBgft2r2/social-images/social-1779438704952-Yingting-Smart-—-Apple-HomeKit-Smart-Living-穎庭國際智能科技.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bCCMipaZMMgU3uzBQ48gKBgft2r2/social-images/social-1779438704952-Yingting-Smart-—-Apple-HomeKit-Smart-Living-穎庭國際智能科技.webp" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -110,9 +117,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LangProvider>
-        <Outlet />
-      </LangProvider>
+      <Outlet />
     </QueryClientProvider>
   );
 }
