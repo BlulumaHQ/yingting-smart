@@ -37,12 +37,19 @@ function LineAccent({ className = "" }: { className?: string }) {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Yingting Smart — Apple HomeKit Smart Living | 穎庭國際智能科技" },
+      { title: "Yingting Smart | Apple HomeKit Smart Living — 穎庭國際智能科技" },
       { name: "description", content: "Apple HomeKit smart home design and installation in Hsinchu. Lighting, climate and voice composed into one calm, intelligent home — by Yingting Smart." },
-      { property: "og:title", content: "Yingting Smart — Smart Living, Refined" },
+      { property: "og:title", content: "Yingting Smart — Apple HomeKit Smart Living" },
       { property: "og:description", content: "Apple HomeKit smart home design and installation in Hsinchu. Quiet technology, warm home." },
-      { property: "og:image", content: heroA },
+      { property: "og:image", content: "https://cinematic-reimagine-project.lovable.app/og-image.jpg" },
+      { property: "og:url", content: "https://cinematic-reimagine-project.lovable.app/" },
       { property: "og:type", content: "website" },
+      { name: "twitter:title", content: "Yingting Smart — Apple HomeKit Smart Living" },
+      { name: "twitter:description", content: "Apple HomeKit smart home design and installation in Hsinchu. Quiet technology, warm home." },
+      { name: "twitter:image", content: "https://cinematic-reimagine-project.lovable.app/og-image.jpg" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://cinematic-reimagine-project.lovable.app/" },
     ],
   }),
   component: Index,
