@@ -375,19 +375,20 @@ function Faq() {
   );
 }
 
-/* --- Journal --------------------------------------------------- */
+/* --- Insights --------------------------------------------------- */
 
-function Journal() {
+function Insights() {
   return (
-    <section id="journal" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
+    <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
-            <div className="text-eyebrow text-accent mb-6">— Journal · 最新資訊</div>
+            <div className="text-eyebrow text-accent mb-6">— Insights · 洞察觀點</div>
             <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
               News &<span className="italic-serif"> notes.</span>
             </h2>
           </div>
+
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
