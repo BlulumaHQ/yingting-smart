@@ -241,8 +241,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
     overflow-wrap: break-word;
     overflow: visible;
   }
-  /* Two paragraphs grid -> stacked */
-  .about-section .section-inner .grid > div > .grid {
+  /* Two paragraphs grid -> stacked (exclude about-grid) */
+  .about-section .section-inner .grid > div > .grid:not(.about-grid) {
     display: flex;
     flex-direction: column;
     gap: 22px;
