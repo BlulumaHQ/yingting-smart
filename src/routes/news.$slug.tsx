@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useReveal } from "@/hooks/use-reveal";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
-import { NEWS } from "@/content/site";
+import { NEWS, type NewsItem } from "@/content/site";
 
 export const Route = createFileRoute("/news/$slug")({
   loader: ({ params }) => {
@@ -79,12 +79,12 @@ function NewsDetail() {
             </aside>
 
             <div className="col-span-12 md:col-span-9 max-w-[68ch] reveal">
-              {article.body.map((b, i) => {
+              {(article.body as NewsItem["body"]).map((b, i: number) => {
                 if (b.type === "h2") return <h2 key={i} className="mt-14 mb-5 text-2xl md:text-3xl font-light tracking-tight">{b.text}</h2>;
                 if (b.type === "h3") return <h3 key={i} className="mt-10 mb-4 text-xl font-normal tracking-tight">{b.text}</h3>;
                 if (b.type === "ul") return (
                   <ul key={i} className="my-6 space-y-3 text-[16px] text-muted-foreground leading-[1.85]">
-                    {b.items!.map((li, j) => (
+                    {(b.items ?? []).map((li: string, j: number) => (
                       <li key={j} className="flex gap-4">
                         <span className="mt-3 h-1 w-1 rounded-full bg-accent shrink-0" />
                         <span>{li}</span>

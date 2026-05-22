@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useReveal } from "@/hooks/use-reveal";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
-import { PRODUCTS, CONTACT } from "@/content/site";
+import { PRODUCTS, CONTACT, type Product } from "@/content/site";
 import bgLiving from "@/assets/yt/bg-living.png";
 
 export const Route = createFileRoute("/products/$slug")({
@@ -97,7 +97,7 @@ function ProductDetail() {
               Considered in <span className="italic-serif">every detail.</span>
             </h2>
             <ul className="divide-y divide-border border-y border-border">
-              {product.features.map((f, i) => (
+              {(product.features as string[]).map((f: string, i: number) => (
                 <li key={f} className="grid grid-cols-12 items-baseline gap-4 py-6">
                   <span className="col-span-2 text-eyebrow text-accent">0{i + 1}</span>
                   <span className="col-span-10 text-[17px] font-light tracking-tight">{f}</span>
@@ -109,7 +109,7 @@ function ProductDetail() {
             <div className="text-eyebrow text-accent mb-6">— Specifications</div>
             <h3 className="text-display-md text-2xl md:text-3xl mb-10">Technical notes.</h3>
             <dl className="space-y-px bg-border">
-              {product.specs.map((s) => (
+              {(product.specs as Product["specs"]).map((s: Product["specs"][number]) => (
                 <div key={s.label} className="bg-background p-5 grid grid-cols-12 gap-4">
                   <dt className="col-span-4 text-eyebrow text-muted-foreground">{s.label}</dt>
                   <dd className="col-span-8 text-[15px]">{s.value}</dd>
