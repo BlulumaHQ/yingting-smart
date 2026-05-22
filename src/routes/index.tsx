@@ -488,7 +488,7 @@ function Index() {
       <About />
       <Systems />
       <Faq />
-      <Journal />
+      <Insights />
       <Contact />
       <SiteFooter />
     </main>
