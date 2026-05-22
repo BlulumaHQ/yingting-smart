@@ -4,10 +4,12 @@ import { useReveal } from "@/hooks/use-reveal";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
 import { NEWS, PRODUCTS, CONTACT } from "@/content/site";
 import heroA from "@/assets/yt/A176170525442.webp";
-import heroB from "@/assets/yt/B.webp";
+import heroB from "@/assets/yt/hero-b.jpg";
 import bgLiving from "@/assets/yt/bg-living.png";
 import bgDisplay from "@/assets/yt/bg-display.png";
 import phoneCutout from "@/assets/yt/phone-cutout.png";
+import frBg01 from "@/assets/yt/fr_bg01.jpg";
+import frBg03 from "@/assets/yt/fr_bg03.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -75,16 +77,21 @@ function HeroSlideB() {
   return (
     <div className="absolute inset-0">
       <img src={heroB} alt="Smart home atmosphere" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/10" />
+      {/* Strong bottom-up scrim for legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
       <div className="relative h-full mx-auto max-w-[1480px] px-6 md:px-12 flex flex-col justify-end pb-20 md:pb-28">
         <div className="max-w-2xl">
-          <div className="flex items-center gap-4 text-eyebrow text-foreground/90 mb-6">
+          <div className="flex items-center gap-4 text-eyebrow text-white/95 mb-6">
             <span className="h-px w-10 bg-accent" />
-            <span>The Quiet Home 靜謐之家</span>
+            <span>The Quiet Home · 靜謐之家</span>
           </div>
-          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_2px_24px_rgba(0,0,0,0.18)]">
+          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
             A home that<br /><span className="italic-serif text-accent">listens.</span>
           </h2>
+          <p className="mt-8 max-w-md text-[15px] leading-[1.85] text-white/85 [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
+            Ambient light, climate and voice — composed in quiet harmony, ready the moment you arrive.
+          </p>
         </div>
       </div>
     </div>
@@ -139,8 +146,16 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="relative py-28 md:py-44">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+    <section id="about" className="relative py-28 md:py-44 overflow-hidden">
+      {/* Decorative brand-tinted geometric backdrop */}
+      <img src={frBg01} alt="" aria-hidden
+        className="absolute -top-10 right-0 w-[55%] opacity-70 pointer-events-none select-none
+                   [filter:hue-rotate(170deg)_saturate(1.4)]" />
+      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
+        <div className="flex items-end justify-between mb-12 reveal">
+          <div className="text-eyebrow text-accent">— About · 關於我們</div>
+          <div className="text-eyebrow text-muted-foreground">02 — About</div>
+        </div>
         <div className="grid grid-cols-12 gap-10 lg:gap-16">
           <div className="col-span-12 lg:col-span-5 reveal">
             <div className="sticky top-32">
@@ -155,7 +170,6 @@ function About() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal">
-            <div className="text-eyebrow text-accent mb-8">— About · 關於我們</div>
             <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
               The value of a home isn't its luxury —
               <br /><span className="italic-serif text-accent">it's whether it understands you.</span>
@@ -362,7 +376,7 @@ function Faq() {
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
-            06 — Frequently Asked
+            04 — Frequently Asked
           </div>
         </div>
 
@@ -379,8 +393,11 @@ function Faq() {
 
 function Insights() {
   return (
-    <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+    <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
+      <img src={frBg03} alt="" aria-hidden
+        className="absolute top-0 right-0 w-[60%] opacity-60 pointer-events-none select-none
+                   [filter:hue-rotate(170deg)_saturate(1.5)]" />
+      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
             <div className="text-eyebrow text-accent mb-6">— Insights · 洞察觀點</div>
@@ -388,7 +405,7 @@ function Insights() {
               News &<span className="italic-serif"> notes.</span>
             </h2>
           </div>
-
+          <div className="text-eyebrow text-muted-foreground">05 — Insights</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
@@ -423,9 +440,12 @@ function Contact() {
         className="absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
+        <div className="flex items-end justify-between mb-10 reveal">
+          <div className="text-eyebrow text-accent">— Contact · 聯絡我們</div>
+          <div className="text-eyebrow text-muted-foreground">06 — Contact</div>
+        </div>
         <div className="grid grid-cols-12 gap-10">
           <div className="col-span-12 lg:col-span-7 reveal">
-            <div className="text-eyebrow text-accent mb-8">— Contact · 聯絡我們</div>
             <h2 className="text-display text-5xl md:text-7xl lg:text-8xl">
               Let's design
               <br /><span className="italic-serif text-accent">your home.</span>

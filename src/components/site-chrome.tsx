@@ -5,7 +5,7 @@ import iconTel from "@/assets/yt/icon-tel.svg";
 import iconLine from "@/assets/yt/icon-line.svg";
 import iconFb from "@/assets/yt/icon-fb.svg";
 import iconIg from "@/assets/yt/icon-ig.svg";
-import { CONTACT, PRODUCTS, NEWS } from "@/content/site";
+import { CONTACT } from "@/content/site";
 
 const NAV = [
   { n: "01", label: "Home",     zh: "首頁", to: "/#top" },
@@ -114,83 +114,76 @@ export function StickyContact() {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[var(--color-surface-2)] border-t border-border">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12 pt-20 pb-10">
-        <div className="grid grid-cols-12 gap-10">
-          {/* Brand */}
-          <div className="col-span-12 md:col-span-5">
-            <Link to="/" className="inline-flex items-center" aria-label="Home">
-              <img src={logo} alt="穎庭智能 Yingting Smart" width={160} height={160} className="h-28 md:h-36 w-auto" />
-            </Link>
-            <p className="mt-8 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              Apple HomeKit smart-living design and installation. Quiet technology that makes home feel more like home.
+    <footer className="relative overflow-hidden bg-foreground text-background">
+      {/* Soft brand glow accents */}
+      <div className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full
+                      bg-[radial-gradient(circle_at_center,oklch(0.78_0.085_210/0.35),transparent_70%)]" />
+      <div className="pointer-events-none absolute -bottom-40 -left-24 h-[380px] w-[380px] rounded-full
+                      bg-[radial-gradient(circle_at_center,oklch(0.78_0.085_210/0.18),transparent_70%)]" />
+
+      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12 pt-24 md:pt-32 pb-10">
+        {/* Oversized brand statement */}
+        <div className="grid grid-cols-12 gap-10 items-end">
+          <div className="col-span-12 md:col-span-8">
+            <div className="flex items-center gap-3 text-[11px] tracking-[0.28em] uppercase text-background/55 mb-8">
+              <span className="h-px w-10 bg-accent" />
+              Yingting Smart · 穎庭國際智能科技
+            </div>
+            <h2 className="font-light tracking-[-0.02em] leading-[0.95]
+                           text-[14vw] md:text-[9vw] lg:text-[8.2rem] xl:text-[9.5rem]">
+              Quiet
+              <span className="italic-serif text-accent"> technology,</span>
+              <br />warm <span className="italic-serif text-accent">home.</span>
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-4 md:pl-6">
+            <img src={logo} alt="穎庭智能 Yingting Smart" width={160} height={160}
+              className="h-24 md:h-28 w-auto opacity-95 [filter:brightness(0)_invert(1)]" />
+            <p className="mt-6 max-w-xs text-[13.5px] leading-[1.85] text-background/65">
+              Apple HomeKit design & installation in Hsinchu. We make technology disappear so home can be felt.
             </p>
-            <div className="mt-6 text-[13px] text-muted-foreground">
-              {CONTACT.address}<br />
-              {CONTACT.addressZh}
-            </div>
-          </div>
-
-          {/* Explore */}
-          <div className="col-span-6 md:col-span-3">
-            <div className="text-eyebrow text-muted-foreground mb-5">Explore · 導覽</div>
-            <ul className="space-y-3 text-[14px]">
-              <li><a href="/#about" className="hover:text-accent transition-colors">About</a></li>
-              <li><a href="/#systems" className="hover:text-accent transition-colors">Systems</a></li>
-              <li><a href="/#faq" className="hover:text-accent transition-colors">FAQ</a></li>
-              <li><a href="/#insights" className="hover:text-accent transition-colors">Insights</a></li>
-              <li><a href="/#contact" className="hover:text-accent transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Products */}
-          <div className="col-span-6 md:col-span-2">
-            <div className="text-eyebrow text-muted-foreground mb-5">Products · 產品</div>
-            <ul className="space-y-3 text-[14px]">
-              {PRODUCTS.map(p => (
-                <li key={p.slug}>
-                  <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-accent transition-colors">
-                    {p.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="col-span-12 md:col-span-2">
-            <div className="text-eyebrow text-muted-foreground mb-5">Contact · 聯絡</div>
-            <ul className="space-y-3 text-[14px]">
-              <li><a href={`tel:${CONTACT.phoneIntl}`} className="hover:text-accent">{CONTACT.phone}</a></li>
-              <li className="text-muted-foreground">{CONTACT.hours}</li>
-            </ul>
-            <div className="mt-6 flex items-center gap-2">
-              {[
-                { icon: iconTel, href: `tel:${CONTACT.phoneIntl}`, label: "Call" },
-                { icon: iconLine, href: CONTACT.lineUrl, label: "LINE" },
-                { icon: iconFb, href: CONTACT.fb, label: "Facebook" },
-                { icon: iconIg, href: CONTACT.ig, label: "Instagram" },
-              ].map(s => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
-                  className="h-9 w-9 grid place-items-center rounded-full bg-accent hover:bg-foreground transition-colors">
-                  <img src={s.icon} alt="" className="h-4 w-4" />
-
-                </a>
-              ))}
-            </div>
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[12px] text-muted-foreground">
+        {/* Hairline divider */}
+        <div className="mt-20 md:mt-28 h-px w-full bg-background/15" />
+
+        {/* Lower nav row — minimal, no contact duplication */}
+        <div className="mt-10 grid grid-cols-12 gap-8 items-start">
+          <div className="col-span-12 md:col-span-5">
+            <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Explore</div>
+            <nav className="flex flex-wrap gap-x-7 gap-y-2 text-[14px] text-background/85">
+              <a href="/#about" className="hover:text-accent transition-colors">About</a>
+              <a href="/#systems" className="hover:text-accent transition-colors">Systems</a>
+              <a href="/#faq" className="hover:text-accent transition-colors">FAQ</a>
+              <a href="/#insights" className="hover:text-accent transition-colors">Insights</a>
+              <a href="/#contact" className="hover:text-accent transition-colors">Contact</a>
+            </nav>
+          </div>
+          <div className="col-span-12 md:col-span-4">
+            <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Studio</div>
+            <p className="text-[14px] text-background/85 leading-[1.7]">
+              {CONTACT.address}
+              <br /><span className="text-background/55">{CONTACT.addressZh}</span>
+            </p>
+          </div>
+          <div className="col-span-12 md:col-span-3 md:text-right">
+            <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Hours</div>
+            <p className="text-[14px] text-background/85">{CONTACT.hours}</p>
+          </div>
+        </div>
+
+        {/* Baseline */}
+        <div className="mt-16 pt-6 border-t border-background/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[12px] text-background/55">
           <div>
             © 2026 穎庭國際智能科技. All rights reserved. ·{" "}
             Web design by{" "}
             <a href="https://bluluma.com/" target="_blank" rel="noreferrer"
-              className="text-foreground hover:text-accent transition-colors underline underline-offset-4 decoration-border">
+              className="text-background hover:text-accent transition-colors underline underline-offset-4 decoration-background/30">
               BluLuma
             </a>
           </div>
-          <div className="opacity-70">統編 {CONTACT.taxId}</div>
+          <div className="opacity-80">統編 {CONTACT.taxId}</div>
         </div>
       </div>
     </footer>
