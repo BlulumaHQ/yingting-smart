@@ -393,8 +393,11 @@ function Faq() {
 
 function Insights() {
   return (
-    <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+    <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
+      <img src={frBg03} alt="" aria-hidden
+        className="absolute top-0 right-0 w-[60%] opacity-60 pointer-events-none select-none
+                   [filter:hue-rotate(170deg)_saturate(1.5)]" />
+      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
             <div className="text-eyebrow text-accent mb-6">— Insights · 洞察觀點</div>
@@ -402,7 +405,7 @@ function Insights() {
               News &<span className="italic-serif"> notes.</span>
             </h2>
           </div>
-
+          <div className="text-eyebrow text-muted-foreground">05 — Insights</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
