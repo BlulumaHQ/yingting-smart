@@ -433,18 +433,23 @@ function FaqColumn({ items, startOpen }: { items: FaqItem[]; startOpen: number }
 }
 
 function Faq() {
+  const { t, lang } = useLang();
   return (
-    <section id="faq" className="relative py-28 md:py-40 bg-background">
+    <section id="faq" className="relative py-28 md:py-40 bg-background overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-6 items-end mb-16 reveal">
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 md:col-span-8 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— FAQ · 常見問題</div>
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
-              Questions, <span className="italic-serif">answered.</span>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem] break-words">
+              {lang === "中" ? (
+                <>常見的<span className="italic-serif">疑問。</span></>
+              ) : (
+                <>Questions, <span className="italic-serif">answered.</span></>
+              )}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
-            04 — Frequently Asked
+            04 — {t("Frequently Asked", "常見問題")}
           </div>
         </div>
 
