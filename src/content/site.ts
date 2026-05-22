@@ -100,7 +100,7 @@ export const NEWS: NewsItem[] = [
   },
   {
     slug: "smart-home-for-older-homes",
-    date: "2026 · 03 · 02",
+    date: "JAN 15, 2025",
     category: "Home Renovation",
     title: "Can older homes be upgraded to a smart home?",
     subtitle: "舊屋可以裝智能家居嗎？ 智能家居改造",
