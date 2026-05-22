@@ -13,8 +13,9 @@ export const Route = createFileRoute("/news/$slug")({
     meta: loaderData
       ? [
           { title: `${loaderData.article.title} — Yingting Smart Journal` },
-          { name: "description", content: loaderData.article.body.find((b) => b.type === "p")?.text ?? loaderData.article.title },
+          { name: "description", content: (loaderData.article.body.find((b) => b.type === "p")?.text ?? loaderData.article.title).slice(0, 158) },
           { property: "og:title", content: loaderData.article.title },
+          { property: "og:description", content: (loaderData.article.body.find((b) => b.type === "p")?.text ?? "Notes from Yingting Smart on Apple HomeKit, smart living and the quiet craft of home.").slice(0, 158) },
           { property: "og:image", content: loaderData.article.image },
           { property: "og:type", content: "article" },
         ]
