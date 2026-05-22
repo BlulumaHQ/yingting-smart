@@ -1,25 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-
-/* Lightweight language switcher.
-   Persists choice in localStorage and toggles document.documentElement.lang
-   so future i18n wiring can hang off a single source of truth. */
-function useLang() {
-  const [lang, setLang] = useState<"EN" | "中">("EN");
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("yt-lang") as "EN" | "中" | null;
-      if (stored) setLang(stored);
-    } catch { /* noop */ }
-  }, []);
-  useEffect(() => {
-    try { localStorage.setItem("yt-lang", lang); } catch { /* noop */ }
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = lang === "中" ? "zh-Hant" : "en";
-    }
-  }, [lang]);
-  return { lang, setLang };
-}
+import { useLang } from "@/lib/i18n";
 
 function LangSwitcher({ className = "" }: { className?: string }) {
   const { lang, setLang } = useLang();
