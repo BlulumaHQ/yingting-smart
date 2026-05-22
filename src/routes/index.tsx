@@ -36,9 +36,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Yingting Smart — Apple HomeKit Smart Living | 穎庭國際智能科技" },
-      { name: "description", content: "Apple HomeKit smart home design & installation in Hsinchu. Lighting, climate, voice — composed into one calm, intelligent home." },
+      { name: "description", content: "Apple HomeKit smart home design and installation in Hsinchu. Lighting, climate and voice composed into one calm, intelligent home — by Yingting Smart." },
       { property: "og:title", content: "Yingting Smart — Smart Living, Refined" },
-      { property: "og:description", content: "Apple HomeKit smart home design & installation in Hsinchu." },
+      { property: "og:description", content: "Apple HomeKit smart home design and installation in Hsinchu. Quiet technology, warm home." },
       { property: "og:image", content: heroA },
       { property: "og:type", content: "website" },
     ],
