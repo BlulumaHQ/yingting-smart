@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLang } from "@/lib/i18n";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
 import { NEWS, PRODUCTS, CONTACT } from "@/content/site";
 import heroA from "@/assets/yt/A176170525442.webp";
