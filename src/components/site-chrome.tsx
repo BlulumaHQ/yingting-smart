@@ -96,11 +96,14 @@ export function SiteNav() {
             {CONTACT.phone}
           </a>
         </div>
-        <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="md:hidden flex flex-col gap-1.5">
-          <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
-          <span className={`block h-px w-7 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
-        </button>
+        <div className="md:hidden flex items-center gap-4">
+          <LangSwitcher />
+          <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="flex flex-col gap-1.5">
+            <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
+            <span className={`block h-px w-7 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
+          </button>
+        </div>
       </div>
       {open && (
         <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl">
