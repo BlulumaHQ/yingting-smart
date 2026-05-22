@@ -146,8 +146,16 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="relative py-28 md:py-44">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+    <section id="about" className="relative py-28 md:py-44 overflow-hidden">
+      {/* Decorative brand-tinted geometric backdrop */}
+      <img src={frBg01} alt="" aria-hidden
+        className="absolute -top-10 right-0 w-[55%] opacity-70 pointer-events-none select-none
+                   [filter:hue-rotate(170deg)_saturate(1.4)]" />
+      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
+        <div className="flex items-end justify-between mb-12 reveal">
+          <div className="text-eyebrow text-accent">— About · 關於我們</div>
+          <div className="text-eyebrow text-muted-foreground">02 — About</div>
+        </div>
         <div className="grid grid-cols-12 gap-10 lg:gap-16">
           <div className="col-span-12 lg:col-span-5 reveal">
             <div className="sticky top-32">
@@ -162,7 +170,6 @@ function About() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal">
-            <div className="text-eyebrow text-accent mb-8">— About · 關於我們</div>
             <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
               The value of a home isn't its luxury —
               <br /><span className="italic-serif text-accent">it's whether it understands you.</span>
