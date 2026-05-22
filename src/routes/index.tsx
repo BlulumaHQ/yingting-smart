@@ -4,10 +4,12 @@ import { useReveal } from "@/hooks/use-reveal";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
 import { NEWS, PRODUCTS, CONTACT } from "@/content/site";
 import heroA from "@/assets/yt/A176170525442.webp";
-import heroB from "@/assets/yt/B.webp";
+import heroB from "@/assets/yt/hero-b.jpg";
 import bgLiving from "@/assets/yt/bg-living.png";
 import bgDisplay from "@/assets/yt/bg-display.png";
 import phoneCutout from "@/assets/yt/phone-cutout.png";
+import frBg01 from "@/assets/yt/fr_bg01.jpg";
+import frBg03 from "@/assets/yt/fr_bg03.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
