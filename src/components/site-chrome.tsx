@@ -96,11 +96,14 @@ export function SiteNav() {
             {CONTACT.phone}
           </a>
         </div>
-        <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="md:hidden flex flex-col gap-1.5">
-          <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
-          <span className={`block h-px w-7 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
-        </button>
+        <div className="md:hidden flex items-center gap-4">
+          <LangSwitcher />
+          <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="flex flex-col gap-1.5">
+            <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
+            <span className={`block h-px w-7 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
+            <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
+          </button>
+        </div>
       </div>
       {open && (
         <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl">
@@ -114,7 +117,6 @@ export function SiteNav() {
             ))}
             <div className="flex items-center justify-between pt-6 mt-2 border-t border-border">
               <a href={`tel:${CONTACT.phoneIntl}`} className="text-eyebrow text-accent">{CONTACT.phone}</a>
-              <LangSwitcher />
             </div>
           </div>
         </div>
@@ -222,14 +224,14 @@ export function SiteFooter() {
           </div>
           <div className="col-span-12 md:col-span-4">
             <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Studio</div>
-            <p className="text-[14px] text-background/85 leading-[1.7]">
-              {CONTACT.address}
+            <p className="text-[14px] text-background/85 leading-[1.7] break-words">
+              No. 500, Sec. 5, Zhonghua Rd., Xiangshan Dist.,<br className="hidden sm:inline" /> <span className="whitespace-nowrap">Hsinchu City</span>
               <br /><span className="text-background/55">{CONTACT.addressZh}</span>
             </p>
           </div>
           <div className="col-span-12 md:col-span-3 md:text-right">
             <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Hours</div>
-            <p className="text-[14px] text-background/85">{CONTACT.hours}</p>
+            <p className="text-[14px] text-background/85 break-words">{CONTACT.hours}</p>
           </div>
         </div>
 

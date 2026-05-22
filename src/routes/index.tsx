@@ -348,6 +348,7 @@ const FAQ_RIGHT = [
 
 function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; startOpen: number }) {
   const [open, setOpen] = useState<number>(startOpen);
+  useEffect(() => { setOpen(startOpen); }, [startOpen]);
   return (
     <ul className="space-y-px bg-border">
       {items.map((it, idx) => {
