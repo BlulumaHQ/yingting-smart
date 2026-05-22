@@ -1,25 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-
-/* Lightweight language switcher.
-   Persists choice in localStorage and toggles document.documentElement.lang
-   so future i18n wiring can hang off a single source of truth. */
-function useLang() {
-  const [lang, setLang] = useState<"EN" | "中">("EN");
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("yt-lang") as "EN" | "中" | null;
-      if (stored) setLang(stored);
-    } catch { /* noop */ }
-  }, []);
-  useEffect(() => {
-    try { localStorage.setItem("yt-lang", lang); } catch { /* noop */ }
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = lang === "中" ? "zh-Hant" : "en";
-    }
-  }, [lang]);
-  return { lang, setLang };
-}
+import { useLang } from "@/lib/i18n";
 
 function LangSwitcher({ className = "" }: { className?: string }) {
   const { lang, setLang } = useLang();
@@ -61,6 +42,7 @@ const NAV = [
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { lang } = useLang();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -84,7 +66,7 @@ export function SiteNav() {
             <a key={l.to} href={l.to}
               className="group inline-flex items-baseline gap-2 text-[13px] tracking-wide text-muted-foreground hover:text-foreground transition-colors">
               <span className="text-[10px] font-medium tracking-[0.18em] text-accent">{l.n}</span>
-              <span className="font-normal">{l.label}</span>
+              <span className="font-normal">{lang === "中" ? l.zh : l.label}</span>
             </a>
           ))}
         </nav>
@@ -112,7 +94,7 @@ export function SiteNav() {
               <a key={l.to} href={l.to} onClick={() => setOpen(false)}
                 className="py-3 flex items-baseline gap-3 text-2xl font-light tracking-tight">
                 <span className="text-[11px] tracking-[0.2em] text-accent">{l.n}</span>
-                {l.label}
+                {lang === "中" ? l.zh : l.label}
               </a>
             ))}
             <div className="flex items-center justify-between pt-6 mt-2 border-t border-border">
@@ -164,6 +146,7 @@ export function StickyContact() {
 }
 
 export function SiteFooter() {
+  const { t } = useLang();
   return (
     <footer
       className="relative overflow-hidden text-background"
@@ -186,23 +169,38 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12 pt-24 md:pt-32 pb-10">
         {/* Oversized brand statement */}
         <div className="grid grid-cols-12 gap-10 items-end">
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 md:col-span-8 min-w-0">
             <div className="flex items-center gap-3 text-[11px] tracking-[0.28em] uppercase text-background/55 mb-8">
-              <span className="h-px w-10 bg-accent" />
-              Yingting Smart · 穎庭國際智能科技
+              <span className="h-px w-10 bg-accent shrink-0" />
+              <span className="break-words">Yingting Smart · 穎庭國際智能科技</span>
             </div>
-            <h2 className="font-light tracking-[-0.02em] leading-[0.95]
-                           text-[14vw] md:text-[9vw] lg:text-[8.2rem] xl:text-[9.5rem]">
-              Quiet
-              <span className="italic-serif text-accent"> technology,</span>
-              <br />warm <span className="italic-serif text-accent">home.</span>
-            </h2>
+            {/* Bilingual oversized statement — keeps brand intact while supporting language toggle */}
+            {t(
+              "EN",
+              "中",
+            ) === "中" ? (
+              <h2 className="font-light tracking-[-0.02em] leading-[0.95] break-words
+                             text-[12vw] md:text-[8vw] lg:text-[7.5rem] xl:text-[8.5rem]">
+                安靜的<span className="italic-serif text-accent">科技，</span>
+                <br />溫暖的<span className="italic-serif text-accent">家。</span>
+              </h2>
+            ) : (
+              <h2 className="font-light tracking-[-0.02em] leading-[0.95] break-words
+                             text-[12vw] md:text-[9vw] lg:text-[8.2rem] xl:text-[9.5rem]">
+                Quiet
+                <span className="italic-serif text-accent"> technology,</span>
+                <br />warm <span className="italic-serif text-accent">home.</span>
+              </h2>
+            )}
           </div>
-          <div className="col-span-12 md:col-span-4 md:pl-6">
+          <div className="col-span-12 md:col-span-4 md:pl-6 min-w-0">
             <img src={logo} alt="穎庭智能 Yingting Smart" width={160} height={160}
               className="h-24 md:h-28 w-auto opacity-95 [filter:brightness(0)_invert(1)]" />
-            <p className="mt-6 max-w-xs text-[13.5px] leading-[1.85] text-background/65">
-              Apple HomeKit design & installation in Hsinchu. We make technology disappear so home can be felt.
+            <p className="mt-6 max-w-xs text-[13.5px] leading-[1.85] text-background/65 break-words">
+              {t(
+                "Yingting Smart designs and installs Apple HomeKit systems for homes that feel calm, intelligent and beautifully lived in.",
+                "穎庭智能提供 Apple HomeKit 智慧家庭設計與安裝服務，打造安定、智慧、真正適合生活的居家空間。"
+              )}
             </p>
           </div>
         </div>
@@ -212,24 +210,25 @@ export function SiteFooter() {
 
         {/* Lower nav row — minimal, no contact duplication */}
         <div className="mt-10 grid grid-cols-12 gap-8 items-start">
-          <div className="col-span-12 md:col-span-5">
+          <div className="col-span-12 md:col-span-5 min-w-0">
             <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Explore</div>
             <nav className="flex flex-wrap gap-x-7 gap-y-2 text-[14px] text-background/85">
-              <a href="/#about" className="hover:text-accent transition-colors">About</a>
-              <a href="/#systems" className="hover:text-accent transition-colors">Systems</a>
-              <a href="/#faq" className="hover:text-accent transition-colors">FAQ</a>
-              <a href="/#insights" className="hover:text-accent transition-colors">Insights</a>
-              <a href="/#contact" className="hover:text-accent transition-colors">Contact</a>
+              <a href="/#about" className="hover:text-accent transition-colors">{t("About", "關於我們")}</a>
+              <a href="/#systems" className="hover:text-accent transition-colors">{t("Systems", "智慧整合")}</a>
+              <a href="/#faq" className="hover:text-accent transition-colors">{t("FAQ", "常見問題")}</a>
+              <a href="/#insights" className="hover:text-accent transition-colors">{t("Insights", "專欄")}</a>
+              <a href="/#contact" className="hover:text-accent transition-colors">{t("Contact", "聯絡我們")}</a>
             </nav>
           </div>
-          <div className="col-span-12 md:col-span-4">
+          <div className="col-span-12 md:col-span-4 min-w-0">
             <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Studio</div>
             <p className="text-[14px] text-background/85 leading-[1.7] break-words">
-              No. 500, Sec. 5, Zhonghua Rd., Xiangshan Dist.,<br className="hidden sm:inline" /> <span className="whitespace-nowrap">Hsinchu City</span>
+              No. 500, Sec. 5, Zhonghua Rd.,
+              <br />Xiangshan Dist., Hsinchu City
               <br /><span className="text-background/55">{CONTACT.addressZh}</span>
             </p>
           </div>
-          <div className="col-span-12 md:col-span-3 md:text-right">
+          <div className="col-span-12 md:col-span-3 md:text-right min-w-0">
             <div className="text-[10px] tracking-[0.28em] uppercase text-background/45 mb-4">Hours</div>
             <p className="text-[14px] text-background/85 break-words">{CONTACT.hours}</p>
           </div>
@@ -237,7 +236,7 @@ export function SiteFooter() {
 
         {/* Baseline */}
         <div className="mt-16 pt-6 border-t border-background/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[12px] text-background/55">
-          <div>
+          <div className="break-words">
             © 2026 穎庭國際智能科技. All rights reserved. ·{" "}
             Web design by{" "}
             <a href="https://bluluma.com/" target="_blank" rel="noreferrer"

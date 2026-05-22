@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLang } from "@/lib/i18n";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
 import { NEWS, PRODUCTS, CONTACT } from "@/content/site";
 import heroA from "@/assets/yt/A176170525442.webp";
@@ -48,38 +49,47 @@ export const Route = createFileRoute("/")({
 });
 
 function HeroSlideA() {
+  const { t, lang } = useLang();
   return (
     <div className="mx-auto max-w-[1480px] px-6 md:px-12">
       <div className="reveal in">
         <div className="flex items-center gap-4 text-eyebrow text-muted-foreground mb-8">
-          <span className="h-px w-10 bg-accent" />
-          <span>Apple HomeKit · Smart Living 智能生活 · Hsinchu 新竹</span>
+          <span className="h-px w-10 bg-accent shrink-0" />
+          <span className="break-words">Apple HomeKit · Smart Living 智能生活 · Hsinchu 新竹</span>
         </div>
-        <h1 className="text-display text-[13vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch]">
-          Smart living,
-          <br /><span className="italic-serif text-accent">redefined.</span>
-        </h1>
+        {lang === "中" ? (
+          <h1 className="text-display text-[11vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch] break-words">
+            安靜的科技，
+            <br /><span className="italic-serif text-accent">溫暖的家。</span>
+          </h1>
+        ) : (
+          <h1 className="text-display text-[12vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch] break-words">
+            Smart living,
+            <br /><span className="italic-serif text-accent">redefined.</span>
+          </h1>
+        )}
       </div>
 
       <div className="mt-10 grid grid-cols-12 gap-6 items-center">
-        <div className="col-span-12 md:col-span-5 reveal in">
-          <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md">
-            Yingting Smart designs and installs Apple HomeKit homes —
-            weaving lighting, climate and voice into the quiet rhythm
-            of daily life, so technology fades and home returns.
+        <div className="col-span-12 md:col-span-5 reveal in min-w-0">
+          <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md break-words">
+            {t(
+              "Apple HomeKit design & installation in Hsinchu. We make technology disappear so home can be felt.",
+              "我們在新竹提供 Apple HomeKit 智慧家庭設計與安裝服務。讓科技隱於生活之中，讓家的溫度被真正感受。"
+            )}
           </p>
-          <div className="mt-8 flex items-center gap-6">
+          <div className="mt-8 flex items-center gap-6 flex-wrap">
             <a href="#systems"
               className="inline-flex items-center gap-3 text-eyebrow text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-              Explore systems <span aria-hidden>→</span>
+              {t("Explore systems", "探索系統")} <span aria-hidden>→</span>
             </a>
             <a href="#contact"
               className="text-eyebrow text-muted-foreground hover:text-foreground transition-colors">
-              Book a visit
+              {t("Book a visit", "預約參觀")}
             </a>
           </div>
         </div>
-        <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in -mt-6 md:-mt-16">
+        <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in -mt-6 md:-mt-16 min-w-0">
           <div className="relative aspect-[16/10] overflow-hidden bg-surface">
             <img src={heroA} alt="Yingting Smart living showcase" fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover" />
@@ -96,23 +106,32 @@ function HeroSlideA() {
 }
 
 function HeroSlideB() {
+  const { t, lang } = useLang();
   return (
     <div className="absolute inset-0">
       <img src={heroB} alt="Smart home atmosphere" className="absolute inset-0 h-full w-full object-cover" />
-      {/* Strong bottom-up scrim for legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
       <div className="relative h-full mx-auto max-w-[1480px] px-6 md:px-12 flex flex-col justify-end pb-20 md:pb-28">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl min-w-0">
           <div className="flex items-center gap-4 text-eyebrow text-white/95 mb-6">
-            <span className="h-px w-10 bg-accent" />
+            <span className="h-px w-10 bg-accent shrink-0" />
             <span>The Quiet Home · 靜謐之家</span>
           </div>
-          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
-            A home that<br /><span className="italic-serif text-accent">listens.</span>
-          </h2>
-          <p className="mt-8 max-w-md text-[15px] leading-[1.85] text-white/85 [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
-            Ambient light, climate and voice — composed in quiet harmony, ready the moment you arrive.
+          {lang === "中" ? (
+            <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] break-words [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
+              懂你的<br /><span className="italic-serif text-accent">家。</span>
+            </h2>
+          ) : (
+            <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] break-words [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
+              A home that<br /><span className="italic-serif text-accent">listens.</span>
+            </h2>
+          )}
+          <p className="mt-8 max-w-md text-[15px] leading-[1.85] text-white/85 break-words [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
+            {t(
+              "Ambient light, climate and voice — composed in quiet harmony, ready the moment you arrive.",
+              "燈光、空調與語音以靜謐和諧的方式運作，在你抵達的那一刻就已準備好。"
+            )}
           </p>
         </div>
       </div>
@@ -167,18 +186,19 @@ function Hero() {
 
 
 function About() {
+  const { t } = useLang();
   return (
     <section id="about" className="relative py-28 md:py-44 overflow-hidden">
-      {/* Subtle brand line decoration */}
-      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px]" />
+      {/* Subtle brand line decoration — kept inside overflow-hidden parent so it never causes horizontal scroll */}
+      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px] max-w-none" />
       <div className="pointer-events-none absolute top-1/3 right-0 h-px w-[28%] bg-gradient-to-r from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
-        <div className="flex items-end justify-between mb-12 reveal">
+        <div className="flex items-end justify-between mb-12 reveal gap-4">
           <div className="text-eyebrow text-accent">— About · 關於我們</div>
           <div className="text-eyebrow text-muted-foreground">02 — About</div>
         </div>
         <div className="grid grid-cols-12 gap-10 lg:gap-16">
-          <div className="col-span-12 lg:col-span-5 reveal">
+          <div className="col-span-12 lg:col-span-5 reveal min-w-0">
             <div className="sticky top-32">
               <div className="aspect-[4/5] overflow-hidden bg-surface">
                 <img src={aboutElevator} alt="Yingting Smart home entry — elevator hall with marble flooring" loading="lazy"
@@ -190,26 +210,27 @@ function About() {
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal">
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
-              The value of a home isn't its luxury —
-              <br /><span className="italic-serif text-accent">it's whether it understands you.</span>
+          <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal min-w-0">
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem] break-words">
+              {t(
+                "The value of a home isn't its luxury —",
+                "家的價值不在於奢華，"
+              )}
+              <br /><span className="italic-serif text-accent">{t("it's whether it understands you.", "而在於它是否真正懂你。")}</span>
             </h2>
 
             <div className="mt-14 grid md:grid-cols-2 gap-10 text-[15px] text-muted-foreground leading-[1.85]">
-              <p>
-                Yingting Smart was founded by a team that cares deeply about
-                technology and the quality of everyday living. Through Apple
-                HomeKit we integrate lighting, climate and voice into the
-                rhythm of daily life — making home a little more attentive,
-                a little warmer, every day.
+              <p className="break-words">
+                {t(
+                  "Yingting Smart was founded by a team that cares deeply about technology and the quality of everyday living. Through Apple HomeKit we integrate lighting, climate and voice into the rhythm of daily life — making home a little more attentive, a little warmer, every day.",
+                  "穎庭智能由一群重視科技與生活品質的團隊成立。我們透過 Apple HomeKit，將燈光、空調、語音控制整合進日常生活節奏，讓家每天都更貼心、更溫暖一點。"
+                )}
               </p>
-              <p>
-                From the moment a light comes on to the way a room finds the
-                right temperature, we believe technology shouldn't feel cold.
-                Whether you're starting a new chapter or refining a long-loved
-                home, we build spaces that feel safe, comfortable, and quietly
-                understood.
+              <p className="break-words">
+                {t(
+                  "From the moment a light comes on to the way a room finds the right temperature, we believe technology shouldn't feel complicated. Whether you're starting a new chapter or refining a long-loved home, we build spaces that feel safe, comfortable, and quietly understood.",
+                  "從燈光亮起的瞬間，到空間自動調整到舒適溫度，我們相信科技不應該讓人感到複雜。無論是新家規劃，或是既有住宅升級，我們都希望打造一個安全、舒適、安靜懂你的生活空間。"
+                )}
               </p>
             </div>
 
@@ -220,9 +241,9 @@ function About() {
                 { k: "Planning", v: "規劃" },
                 { k: "Renew", v: "改造" },
               ].map((i, idx) => (
-                <div key={i.k} className="bg-background p-6 md:p-7">
+                <div key={i.k} className="bg-background p-6 md:p-7 min-w-0">
                   <div className="text-eyebrow text-accent">0{idx + 1}</div>
-                  <div className="text-3xl font-light tracking-tight mt-3">{i.k}</div>
+                  <div className="text-3xl font-light tracking-tight mt-3">{t(i.k, i.v)}</div>
                   <div className="text-eyebrow text-muted-foreground mt-2">{i.v}</div>
                 </div>
               ))}
@@ -235,16 +256,20 @@ function About() {
 }
 
 function Systems() {
+  const { t, lang } = useLang();
   return (
-    <section id="systems" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
+    <section id="systems" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-6 items-end mb-20 reveal">
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 md:col-span-8 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— Systems · 智能整合</div>
 
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
-              Three quiet <span className="italic-serif">instruments</span>
-              <br />for one calm home.
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl break-words">
+              {lang === "中" ? (
+                <>自然融入生活的<br /><span className="italic-serif">智慧系統。</span></>
+              ) : (
+                <>Smart systems that<br />feel <span className="italic-serif">natural.</span></>
+              )}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
@@ -258,7 +283,7 @@ function Systems() {
               key={s.slug}
               to="/products/$slug"
               params={{ slug: s.slug }}
-              className="group bg-background p-8 md:p-10 flex flex-col reveal hover:bg-surface transition-colors"
+              className="group bg-background p-8 md:p-10 flex flex-col reveal hover:bg-surface transition-colors min-w-0"
             >
               <div className="flex items-baseline justify-between">
                 <span className="text-eyebrow text-accent">0{i + 1}</span>
@@ -270,12 +295,12 @@ function Systems() {
               </div>
               <div className="mt-auto">
                 <div className="text-eyebrow text-muted-foreground mb-2">{s.tagline}</div>
-                <h3 className="text-3xl md:text-[2.25rem] font-light tracking-tight group-hover:text-accent transition-colors">
+                <h3 className="text-3xl md:text-[2.25rem] font-light tracking-tight group-hover:text-accent transition-colors break-words">
                   {s.name}
                 </h3>
-                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3">{s.description}</p>
+                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3 break-words">{s.description}</p>
                 <div className="mt-8 inline-flex items-center gap-2 text-eyebrow text-foreground">
-                  Discover <span className="transition-transform group-hover:translate-x-1">→</span>
+                  {t("Discover", "了解更多")} <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </div>
             </Link>
@@ -284,23 +309,27 @@ function Systems() {
 
         {/* Showroom — uses original lifestyle bg image with transparent phone */}
         <div className="mt-24 md:mt-32 grid grid-cols-12 gap-6 items-center reveal">
-          <div className="col-span-12 md:col-span-5 md:order-2">
+          <div className="col-span-12 md:col-span-5 md:order-2 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— Showroom · 展示中心</div>
-            <h3 className="text-display-md text-3xl md:text-5xl">
-              The daily ritual,
-              <br /><span className="italic-serif">a single touch away.</span>
+            <h3 className="text-display-md text-3xl md:text-5xl break-words">
+              {lang === "中" ? (
+                <>日常的儀式，<br /><span className="italic-serif">只在一觸之間。</span></>
+              ) : (
+                <>The daily ritual,<br /><span className="italic-serif">a single touch away.</span></>
+              )}
             </h3>
-            <p className="mt-8 text-muted-foreground leading-[1.85] max-w-md">
-              Scene control, energy management, ambient awareness —
-              composed into one interface so intelligence becomes the quiet
-              backdrop of the space, never the interruption.
+            <p className="mt-8 text-muted-foreground leading-[1.85] max-w-md break-words">
+              {t(
+                "We design Apple HomeKit systems around the way you live — not around devices. Lighting, climate, security and voice control work together quietly, so your home responds without feeling mechanical.",
+                "我們依照你的生活方式規劃 Apple HomeKit 系統，而不是只堆疊設備。燈光、空調、安全與語音控制自然協作，讓家能即時回應，卻不顯得冰冷機械。"
+              )}
             </p>
             <a href="#contact"
               className="mt-10 inline-flex items-center gap-3 text-eyebrow border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-              Book a showroom visit <span>→</span>
+              {t("Book a showroom visit", "預約展示參觀")} <span>→</span>
             </a>
           </div>
-          <div className="col-span-12 md:col-span-7 md:order-1">
+          <div className="col-span-12 md:col-span-7 md:order-1 min-w-0">
             <div className="relative aspect-[5/4] overflow-hidden bg-[var(--color-accent-soft)]/40">
               <img src={bgLiving} alt="Smart living atmosphere" loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover" />
@@ -316,51 +345,68 @@ function Systems() {
 
 /* --- FAQ -------------------------------------------------------- */
 
-const FAQ_LEFT = [
+type FaqItem = { q: string; a: string; qZh: string; aZh: string };
+
+const FAQ_LEFT: FaqItem[] = [
   {
     q: "What is Apple HomeKit?",
-    a: "Apple's smart-home platform. Every HomeKit-certified accessory in your home — lights, AC, locks, sensors — is managed from one place, the Home app on your Apple devices. The Home app is the conductor; HomeKit keeps everything in tune."
+    qZh: "什麼是 Apple HomeKit？",
+    a: "Apple's smart-home platform. Every HomeKit-certified accessory in your home — lights, AC, locks, sensors — is managed from one place, the Home app on your Apple devices. The Home app is the conductor; HomeKit keeps everything in tune.",
+    aZh: "Apple 的智慧家庭平台。家中所有 HomeKit 認證設備——燈光、空調、門鎖、感應器——都能在 Apple 裝置的「家庭」App 中集中管理。「家庭」App 是指揮者，HomeKit 讓所有設備協調一致。"
   },
   {
     q: "Do I need a HomePod or Apple TV?",
-    a: "Not for basic on/off control. But for remote access, reliable automations, and full voice — yes, a home hub is essential. We usually recommend HomePod for an Apple-first smart home."
+    qZh: "我需要 HomePod 或 Apple TV 嗎？",
+    a: "Not for basic on/off control. But for remote access, reliable automations, and full voice — yes, a home hub is essential. We usually recommend HomePod for an Apple-first smart home.",
+    aZh: "基本開關控制不需要。但若要遠端遙控、穩定的自動化與完整語音控制，就需要一台家庭中樞。我們通常建議以 HomePod 作為 Apple 智慧家庭的核心。"
   },
   {
     q: "What happens during a power outage?",
-    a: "Devices pause, then recover automatically when power returns. HomeKit settings and automations are stored on the system, not in the cloud, so nothing needs to be reset."
+    qZh: "停電時會發生什麼事？",
+    a: "Most smart home devices return to their previous state after power is restored. We also help plan essential circuits and explain what should remain manual for safety.",
+    aZh: "多數智慧家庭設備會在復電後回到原本狀態。我們也會協助規劃必要迴路，並說明哪些設備基於安全考量應保留手動控制。"
   }
 ];
 
-const FAQ_RIGHT = [
+const FAQ_RIGHT: FaqItem[] = [
   {
     q: "Can older homes be upgraded to a smart home?",
-    a: "Yes. Most upgrades — smart switches, AC controllers, smart plugs — are direct replacements that don't require breaking walls or rewiring. We assess neutral-line, Wi-Fi coverage and the panel before planning."
+    qZh: "老屋也可以升級成智慧家庭嗎？",
+    a: "Yes. Most upgrades — smart switches, AC controllers, smart plugs — are direct replacements that don't require breaking walls or rewiring. We assess neutral-line, Wi-Fi coverage and the panel before planning.",
+    aZh: "可以。多數升級項目，例如智慧開關、冷氣控制器、智慧插座，都能以替換方式安裝，不一定需要敲牆或重新配線。我們會先評估中性線、Wi-Fi 覆蓋與電箱狀況，再進行規劃。"
   },
   {
     q: "Where should we start?",
-    a: "Smart lighting gives the most immediate impact. AC control improves comfort and energy use. A HomePod hub ties the system together with voice — that's a complete first phase."
+    qZh: "我們應該從哪裡開始？",
+    a: "Start with lighting and climate. These are the two areas people feel every day, and they create the biggest improvement with the least disruption.",
+    aZh: "建議從燈光與空調開始。這兩項是每天最直接感受到的生活體驗，也通常能以較低干擾帶來最明顯的改善。"
   },
   {
     q: "Do you offer on-site planning?",
-    a: "Yes. We schedule consultations and showroom visits in Hsinchu. We walk through the home, review network and electrical conditions, and propose a phased plan that fits the way you actually live."
+    qZh: "你們提供現場規劃嗎？",
+    a: "Yes. We can visit your home or showroom, review the space, understand your lifestyle and then recommend the right HomeKit setup.",
+    aZh: "有。我們可以到住宅或展示空間現場了解環境、動線與生活需求，再建議合適的 HomeKit 規劃方式。"
   }
 ];
 
-function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; startOpen: number }) {
+function FaqColumn({ items, startOpen }: { items: FaqItem[]; startOpen: number }) {
   const [open, setOpen] = useState<number>(startOpen);
+  const { lang } = useLang();
   useEffect(() => { setOpen(startOpen); }, [startOpen]);
   return (
-    <ul className="space-y-px bg-border">
+    <ul className="space-y-px bg-border min-w-0">
       {items.map((it, idx) => {
         const isOpen = open === idx;
+        const q = lang === "中" ? it.qZh : it.q;
+        const a = lang === "中" ? it.aZh : it.a;
         return (
-          <li key={it.q} className="bg-background">
+          <li key={it.q} className="bg-background min-w-0">
             <button
               onClick={() => setOpen(isOpen ? -1 : idx)}
-              className="w-full flex items-start justify-between gap-6 py-7 text-left group"
+              className="w-full flex items-start justify-between gap-4 py-7 text-left group"
             >
-              <span className="text-[18px] md:text-[20px] font-normal tracking-tight pr-4 group-hover:text-accent transition-colors">
-                {it.q}
+              <span className="min-w-0 text-[18px] md:text-[20px] font-normal tracking-tight pr-2 group-hover:text-accent transition-colors break-words">
+                {q}
               </span>
               <span className={`mt-1.5 grid place-items-center h-7 w-7 shrink-0 rounded-full border border-border
                               transition-all duration-500 ${isOpen ? "bg-accent border-accent rotate-45" : "bg-transparent"}`}>
@@ -374,8 +420,8 @@ function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; st
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="pb-7 pr-10 text-[15px] text-muted-foreground leading-[1.85] max-w-prose">
-                  {it.a}
+                <p className="pb-7 pr-2 md:pr-10 text-[15px] text-muted-foreground leading-[1.85] max-w-prose break-words">
+                  {a}
                 </p>
               </div>
             </div>
@@ -387,18 +433,23 @@ function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; st
 }
 
 function Faq() {
+  const { t, lang } = useLang();
   return (
-    <section id="faq" className="relative py-28 md:py-40 bg-background">
+    <section id="faq" className="relative py-28 md:py-40 bg-background overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-6 items-end mb-16 reveal">
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 md:col-span-8 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— FAQ · 常見問題</div>
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
-              Questions, <span className="italic-serif">answered.</span>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem] break-words">
+              {lang === "中" ? (
+                <>常見的<span className="italic-serif">疑問。</span></>
+              ) : (
+                <>Questions, <span className="italic-serif">answered.</span></>
+              )}
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
-            04 — Frequently Asked
+            04 — {t("Frequently Asked", "常見問題")}
           </div>
         </div>
 
@@ -423,7 +474,7 @@ function FaqGrid() {
 function Insights() {
   return (
     <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
-      <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px]" />
+      <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px] max-w-none" />
       <div className="pointer-events-none absolute top-1/4 left-0 h-px w-[28%] bg-gradient-to-l from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
@@ -462,40 +513,46 @@ function Insights() {
 }
 
 function Contact() {
+  const { t, lang } = useLang();
   return (
     <section id="contact" className="relative py-28 md:py-44 overflow-hidden">
       <img src={bgDisplay} alt="" aria-hidden
         className="absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
-        <div className="flex items-end justify-between mb-10 reveal">
+        <div className="flex items-end justify-between mb-10 reveal gap-4">
           <div className="text-eyebrow text-accent">— Contact · 聯絡我們</div>
           <div className="text-eyebrow text-muted-foreground">06 — Contact</div>
         </div>
         <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 lg:col-span-7 reveal">
-            <h2 className="text-display text-5xl md:text-7xl lg:text-8xl">
-              Let's design
-              <br /><span className="italic-serif text-accent">your home.</span>
+          <div className="col-span-12 lg:col-span-7 reveal min-w-0">
+            <h2 className="text-display text-5xl md:text-7xl lg:text-8xl break-words">
+              {lang === "中" ? (
+                <>一起設計<br /><span className="italic-serif text-accent">更懂你的家。</span></>
+              ) : (
+                <>Let's design<br /><span className="italic-serif text-accent">your home.</span></>
+              )}
             </h2>
-            <p className="mt-10 max-w-md text-[15px] leading-[1.85] text-muted-foreground">
-              Visit our showroom in Hsinchu, or reach us by phone or LINE.
-              We'll begin with the way you live, then design the home around it.
+            <p className="mt-10 max-w-md text-[15px] leading-[1.85] text-muted-foreground break-words">
+              {t(
+                "Visit our showroom in Hsinchu, or reach us by phone or LINE. We'll begin with the way you live, then design the home around it.",
+                "歡迎來到我們位於新竹的展示空間，也可以透過電話或 LINE 聯絡我們。我們會先理解你的生活方式，再為你規劃真正適合的智慧家庭。"
+              )}
             </p>
 
             <div className="mt-14 flex flex-wrap gap-4">
               <a href={`tel:${CONTACT.phoneIntl}`}
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors">
-                Call · {CONTACT.phone} <span>→</span>
+                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors max-w-full">
+                {t("Call", "電話")} · {CONTACT.phone} <span>→</span>
               </a>
               <a href={CONTACT.lineUrl} target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors">
+                className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors max-w-full">
                 LINE · {CONTACT.line}
               </a>
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-5 reveal">
+          <div className="col-span-12 lg:col-span-5 reveal min-w-0">
             <dl className="divide-y divide-border border-y border-border">
               {[
                 { k: "Phone", v: CONTACT.phone, href: `tel:${CONTACT.phoneIntl}` },
@@ -508,8 +565,8 @@ function Contact() {
               ].map((row) => {
                 const inner = (
                   <div className="group grid grid-cols-12 items-baseline gap-4 py-5">
-                    <dt className="col-span-4 text-eyebrow text-muted-foreground">{row.k}</dt>
-                    <dd className="col-span-8 text-base md:text-xl font-light tracking-tight break-words group-hover:text-accent transition-colors">
+                    <dt className="col-span-4 text-eyebrow text-muted-foreground min-w-0">{row.k}</dt>
+                    <dd className="col-span-8 text-base md:text-xl font-light tracking-tight break-words min-w-0 group-hover:text-accent transition-colors">
                       {row.v}
                     </dd>
                   </div>
