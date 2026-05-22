@@ -249,7 +249,7 @@ function Systems() {
         {/* Showroom — uses original lifestyle bg image with transparent phone */}
         <div className="mt-24 md:mt-32 grid grid-cols-12 gap-6 items-center reveal">
           <div className="col-span-12 md:col-span-5 md:order-2">
-            <div className="text-eyebrow text-accent mb-6">— Showroom</div>
+            <div className="text-eyebrow text-accent mb-6">— Showroom · 展示中心</div>
             <h3 className="text-display-md text-3xl md:text-5xl">
               The daily ritual,
               <br /><span className="italic-serif">a single touch away.</span>
