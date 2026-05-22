@@ -440,9 +440,12 @@ function Contact() {
         className="absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
+        <div className="flex items-end justify-between mb-10 reveal">
+          <div className="text-eyebrow text-accent">— Contact · 聯絡我們</div>
+          <div className="text-eyebrow text-muted-foreground">06 — Contact</div>
+        </div>
         <div className="grid grid-cols-12 gap-10">
           <div className="col-span-12 lg:col-span-7 reveal">
-            <div className="text-eyebrow text-accent mb-8">— Contact · 聯絡我們</div>
             <h2 className="text-display text-5xl md:text-7xl lg:text-8xl">
               Let's design
               <br /><span className="italic-serif text-accent">your home.</span>
