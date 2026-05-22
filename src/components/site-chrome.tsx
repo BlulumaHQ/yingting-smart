@@ -129,7 +129,7 @@ export function StickyContact() {
         ))}
       </div>
       {/* Mobile bottom bar — brand cyan, premium floating */}
-      <div className="md:hidden fixed inset-x-4 bottom-4 z-40 flex items-center justify-around gap-2
+      <div className="md:hidden fixed inset-x-6 bottom-6 z-40 flex items-center justify-around gap-2
                       rounded-full bg-accent px-4 py-2.5
                       shadow-[0_18px_40px_-12px_oklch(0.78_0.085_210/0.55)]
                       ring-1 ring-[oklch(0.78_0.085_210/0.4)]">
