@@ -77,16 +77,21 @@ function HeroSlideB() {
   return (
     <div className="absolute inset-0">
       <img src={heroB} alt="Smart home atmosphere" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/10" />
+      {/* Strong bottom-up scrim for legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
       <div className="relative h-full mx-auto max-w-[1480px] px-6 md:px-12 flex flex-col justify-end pb-20 md:pb-28">
         <div className="max-w-2xl">
-          <div className="flex items-center gap-4 text-eyebrow text-foreground/90 mb-6">
+          <div className="flex items-center gap-4 text-eyebrow text-white/95 mb-6">
             <span className="h-px w-10 bg-accent" />
-            <span>The Quiet Home 靜謐之家</span>
+            <span>The Quiet Home · 靜謐之家</span>
           </div>
-          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_2px_24px_rgba(0,0,0,0.18)]">
+          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
             A home that<br /><span className="italic-serif text-accent">listens.</span>
           </h2>
+          <p className="mt-8 max-w-md text-[15px] leading-[1.85] text-white/85 [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
+            Ambient light, climate and voice — composed in quiet harmony, ready the moment you arrive.
+          </p>
         </div>
       </div>
     </div>
