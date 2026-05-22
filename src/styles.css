@@ -122,85 +122,253 @@
   .hairline { height: 1px; background: var(--color-border); }
 }
 
-/* ===== Conservative mobile layout fixes ======================== */
+/* ===== Global box-sizing safety ================================ */
 *, *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100%; overflow-x: hidden; }
 
+/* ============================================================== */
+/* MOBILE REBUILD — Header, About, Contact (max-width: 767px)     */
+/* Desktop styles (md: and above) remain untouched.               */
+/* ============================================================== */
 @media (max-width: 767px) {
+
+  /* -------- Mobile Header --------------------------------------- */
   .site-header {
-    min-height: 132px;
-    height: 132px;
-    overflow: visible;
+    height: 120px;
+    min-height: 120px;
+    box-sizing: border-box;
   }
-
-  .mobile-header-inner {
+  .site-header .mobile-header-inner {
     width: 100%;
-    min-height: 132px;
-    padding: 24px 32px;
+    max-width: 100%;
+    height: 120px;
+    min-height: 120px;
+    padding: 0 28px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
   }
-
-  .header-logo,
-  .header-logo img {
-    width: 96px;
-    max-width: 96px;
+  .site-header .header-logo {
+    width: 86px;
+    max-width: 86px;
+    height: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .site-header .header-logo img {
+    width: 86px;
+    max-width: 86px;
     height: auto;
     display: block;
-    flex-shrink: 0;
   }
-
-  .mobile-header-actions {
+  .site-header .mobile-header-actions {
     display: flex;
     align-items: center;
     gap: 18px;
     flex-shrink: 0;
   }
 
-  .about-section,
-  .contact-section {
+  /* -------- About section -------------------------------------- */
+  .about-section {
+    padding: 80px 28px 88px !important;
     width: 100%;
     max-width: 100%;
     overflow: visible;
+    box-sizing: border-box;
   }
-
-  .about-section .section-inner,
-  .contact-section .section-inner {
-    width: auto;
-    max-width: none;
-    margin-left: 32px;
-    margin-right: 32px;
-    padding-left: 0;
-    padding-right: 0;
-    overflow: visible;
-  }
-
-  .about-section h1,
-  .about-section h2,
-  .about-section p,
-  .contact-section h1,
-  .contact-section h2,
-  .contact-section p {
+  .about-section .section-inner {
     width: 100%;
     max-width: 100%;
-    white-space: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     overflow: visible;
-    text-overflow: unset;
-    word-break: keep-all;
-    overflow-wrap: anywhere;
   }
-
-  .about-image,
-  .about-image img,
-  .about-grid,
-  .contact-copy,
-  .contact-actions,
-  .contact-details {
+  /* Stack the 12-col grid into a single column on mobile */
+  .about-section .section-inner > .grid {
+    display: block;
+  }
+  .about-section .section-inner > div:first-child {
+    margin-bottom: 32px;
+  }
+  .about-section .section-inner > .grid > div {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    padding: 0;
+    margin: 0 0 32px;
+  }
+  .about-section .section-inner > .grid > div:last-child {
+    margin-bottom: 0;
+  }
+  .about-section .sticky { position: static; top: auto; }
+
+  .about-section .about-image {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .about-section .about-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
   }
 
-  .contact-actions a {
+  .about-section h2 {
+    width: 100%;
     max-width: 100%;
+    font-size: clamp(36px, 10.5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    margin: 0 0 28px;
     white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    overflow: visible;
+  }
+  .about-section p {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.85;
+    white-space: normal;
+    overflow-wrap: break-word;
+    overflow: visible;
+  }
+  /* Two paragraphs grid -> stacked */
+  .about-section .section-inner .grid > div > .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 32px;
+  }
+
+  /* About grid (Design/Install/Planning/Renew) */
+  .about-section .about-grid {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .about-section .about-grid > div {
+    min-width: 0;
+    padding: 26px 18px;
+    box-sizing: border-box;
+  }
+
+  /* Hide oversized decorative line accent in About on mobile */
+  .about-section > svg,
+  .about-section > .absolute > svg {
+    display: none;
+  }
+
+  /* -------- Contact section ------------------------------------ */
+  .contact-section {
+    padding: 80px 28px 120px !important;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+  .contact-section .section-inner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  .contact-section .section-inner > .grid {
+    display: block;
+  }
+  .contact-section .section-inner > .grid > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0;
+    margin: 0 0 40px;
+  }
+  .contact-section .section-inner > .grid > div:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-section h2 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(42px, 12vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin: 0 0 28px;
+    white-space: normal;
+    overflow-wrap: break-word;
+    overflow: visible;
+  }
+  .contact-section p {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.85;
+    margin-top: 24px;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  /* Contact buttons stacked, full width */
+  .contact-section .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 36px;
+    width: 100%;
+  }
+  .contact-section .contact-actions a {
+    width: 100%;
+    max-width: 100%;
+    min-height: 60px;
+    padding: 16px 20px;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+  }
+
+  /* Contact details dl rows */
+  .contact-section .contact-details {
+    width: 100%;
+    max-width: 100%;
+  }
+  .contact-section .contact-details dl > * > div,
+  .contact-section .contact-details dl > div {
+    grid-template-columns: 100px 1fr !important;
+    gap: 16px !important;
+    padding: 22px 0 !important;
+  }
+  .contact-section .contact-details dt {
+    grid-column: auto !important;
+  }
+  .contact-section .contact-details dd {
+    grid-column: auto !important;
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* -------- Sticky bottom contact bar -------------------------- */
+  .site-header ~ * .fixed.inset-x-4,
+  body .fixed.inset-x-4 {
+    /* leave default; below targets the bar specifically */
   }
 }
+
 
