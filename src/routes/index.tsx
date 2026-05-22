@@ -49,38 +49,47 @@ export const Route = createFileRoute("/")({
 });
 
 function HeroSlideA() {
+  const { t, lang } = useLang();
   return (
     <div className="mx-auto max-w-[1480px] px-6 md:px-12">
       <div className="reveal in">
         <div className="flex items-center gap-4 text-eyebrow text-muted-foreground mb-8">
-          <span className="h-px w-10 bg-accent" />
-          <span>Apple HomeKit · Smart Living 智能生活 · Hsinchu 新竹</span>
+          <span className="h-px w-10 bg-accent shrink-0" />
+          <span className="break-words">Apple HomeKit · Smart Living 智能生活 · Hsinchu 新竹</span>
         </div>
-        <h1 className="text-display text-[13vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch]">
-          Smart living,
-          <br /><span className="italic-serif text-accent">redefined.</span>
-        </h1>
+        {lang === "中" ? (
+          <h1 className="text-display text-[11vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch] break-words">
+            安靜的科技，
+            <br /><span className="italic-serif text-accent">溫暖的家。</span>
+          </h1>
+        ) : (
+          <h1 className="text-display text-[12vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch] break-words">
+            Smart living,
+            <br /><span className="italic-serif text-accent">redefined.</span>
+          </h1>
+        )}
       </div>
 
       <div className="mt-10 grid grid-cols-12 gap-6 items-center">
-        <div className="col-span-12 md:col-span-5 reveal in">
-          <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md">
-            Yingting Smart designs and installs Apple HomeKit homes —
-            weaving lighting, climate and voice into the quiet rhythm
-            of daily life, so technology fades and home returns.
+        <div className="col-span-12 md:col-span-5 reveal in min-w-0">
+          <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md break-words">
+            {t(
+              "Apple HomeKit design & installation in Hsinchu. We make technology disappear so home can be felt.",
+              "我們在新竹提供 Apple HomeKit 智慧家庭設計與安裝服務。讓科技隱於生活之中，讓家的溫度被真正感受。"
+            )}
           </p>
-          <div className="mt-8 flex items-center gap-6">
+          <div className="mt-8 flex items-center gap-6 flex-wrap">
             <a href="#systems"
               className="inline-flex items-center gap-3 text-eyebrow text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-              Explore systems <span aria-hidden>→</span>
+              {t("Explore systems", "探索系統")} <span aria-hidden>→</span>
             </a>
             <a href="#contact"
               className="text-eyebrow text-muted-foreground hover:text-foreground transition-colors">
-              Book a visit
+              {t("Book a visit", "預約參觀")}
             </a>
           </div>
         </div>
-        <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in -mt-6 md:-mt-16">
+        <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in -mt-6 md:-mt-16 min-w-0">
           <div className="relative aspect-[16/10] overflow-hidden bg-surface">
             <img src={heroA} alt="Yingting Smart living showcase" fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover" />
@@ -97,23 +106,32 @@ function HeroSlideA() {
 }
 
 function HeroSlideB() {
+  const { t, lang } = useLang();
   return (
     <div className="absolute inset-0">
       <img src={heroB} alt="Smart home atmosphere" className="absolute inset-0 h-full w-full object-cover" />
-      {/* Strong bottom-up scrim for legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
       <div className="relative h-full mx-auto max-w-[1480px] px-6 md:px-12 flex flex-col justify-end pb-20 md:pb-28">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl min-w-0">
           <div className="flex items-center gap-4 text-eyebrow text-white/95 mb-6">
-            <span className="h-px w-10 bg-accent" />
+            <span className="h-px w-10 bg-accent shrink-0" />
             <span>The Quiet Home · 靜謐之家</span>
           </div>
-          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
-            A home that<br /><span className="italic-serif text-accent">listens.</span>
-          </h2>
-          <p className="mt-8 max-w-md text-[15px] leading-[1.85] text-white/85 [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
-            Ambient light, climate and voice — composed in quiet harmony, ready the moment you arrive.
+          {lang === "中" ? (
+            <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] break-words [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
+              懂你的<br /><span className="italic-serif text-accent">家。</span>
+            </h2>
+          ) : (
+            <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] break-words [text-shadow:0_4px_32px_rgba(0,0,0,0.55)]">
+              A home that<br /><span className="italic-serif text-accent">listens.</span>
+            </h2>
+          )}
+          <p className="mt-8 max-w-md text-[15px] leading-[1.85] text-white/85 break-words [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
+            {t(
+              "Ambient light, climate and voice — composed in quiet harmony, ready the moment you arrive.",
+              "燈光、空調與語音以靜謐和諧的方式運作，在你抵達的那一刻就已準備好。"
+            )}
           </p>
         </div>
       </div>
