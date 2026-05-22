@@ -401,12 +401,19 @@ function Faq() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 reveal">
-          <FaqColumn items={FAQ_LEFT} startOpen={0} />
-          <FaqColumn items={FAQ_RIGHT} startOpen={0} />
-        </div>
+        <FaqGrid />
       </div>
     </section>
+  );
+}
+
+function FaqGrid() {
+  const isMobile = useIsMobile();
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 reveal">
+      <FaqColumn items={FAQ_LEFT} startOpen={0} />
+      <FaqColumn items={FAQ_RIGHT} startOpen={isMobile ? -1 : 0} />
+    </div>
   );
 }
 
