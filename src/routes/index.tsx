@@ -508,7 +508,7 @@ function Contact() {
                 const inner = (
                   <div className="group grid grid-cols-12 items-baseline gap-4 py-5">
                     <dt className="col-span-4 text-eyebrow text-muted-foreground">{row.k}</dt>
-                    <dd className="col-span-8 text-lg md:text-xl font-light tracking-tight group-hover:text-accent transition-colors">
+                    <dd className="col-span-8 text-base md:text-xl font-light tracking-tight break-words group-hover:text-accent transition-colors">
                       {row.v}
                     </dd>
                   </div>
