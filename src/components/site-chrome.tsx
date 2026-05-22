@@ -5,7 +5,7 @@ import iconTel from "@/assets/yt/icon-tel.svg";
 import iconLine from "@/assets/yt/icon-line.svg";
 import iconFb from "@/assets/yt/icon-fb.svg";
 import iconIg from "@/assets/yt/icon-ig.svg";
-import { CONTACT, PRODUCTS, NEWS } from "@/content/site";
+import { CONTACT } from "@/content/site";
 
 const NAV = [
   { n: "01", label: "Home",     zh: "首頁", to: "/#top" },
