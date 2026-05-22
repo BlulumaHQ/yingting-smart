@@ -155,7 +155,7 @@ function About() {
           </div>
 
           <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal">
-            <div className="text-eyebrow text-accent mb-8">A philosophy of home</div>
+            <div className="text-eyebrow text-accent mb-8">— About · 關於我們</div>
             <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
               The value of a home isn't its luxury —
               <br /><span className="italic-serif text-accent">it's whether it understands you.</span>
