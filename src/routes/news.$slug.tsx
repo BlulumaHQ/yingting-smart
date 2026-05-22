@@ -10,16 +10,23 @@ export const Route = createFileRoute("/news/$slug")({
     if (!article) throw notFound();
     return { article };
   },
-  head: ({ loaderData }) => ({
+  head: ({ loaderData, params }) => ({
     meta: loaderData
       ? [
           { title: `${loaderData.article.title} — Yingting Smart Journal` },
           { name: "description", content: (loaderData.article.body.find((b) => b.type === "p")?.text ?? loaderData.article.title).slice(0, 158) },
           { property: "og:title", content: loaderData.article.title },
           { property: "og:description", content: (loaderData.article.body.find((b) => b.type === "p")?.text ?? "Notes from Yingting Smart on Apple HomeKit, smart living and the quiet craft of home.").slice(0, 158) },
-          { property: "og:image", content: loaderData.article.image },
+          { property: "og:image", content: `https://cinematic-reimagine-project.lovable.app${loaderData.article.image}` },
+          { property: "og:url", content: `https://cinematic-reimagine-project.lovable.app/news/${params.slug}` },
           { property: "og:type", content: "article" },
+          { name: "twitter:title", content: loaderData.article.title },
+          { name: "twitter:description", content: (loaderData.article.body.find((b) => b.type === "p")?.text ?? "Notes from Yingting Smart on Apple HomeKit, smart living and the quiet craft of home.").slice(0, 158) },
+          { name: "twitter:image", content: `https://cinematic-reimagine-project.lovable.app${loaderData.article.image}` },
         ]
+      : [],
+    links: loaderData
+      ? [{ rel: "canonical", href: `https://cinematic-reimagine-project.lovable.app/news/${params.slug}` }]
       : [],
   }),
   notFoundComponent: () => (
