@@ -88,11 +88,14 @@ export function SiteNav() {
             </a>
           ))}
         </nav>
-        <a href={`tel:${CONTACT.phoneIntl}`}
-          className="hidden md:inline-flex items-center gap-3 text-[13px] tracking-wide text-foreground">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          {CONTACT.phone}
-        </a>
+        <div className="hidden md:flex items-center gap-5">
+          <LangSwitcher />
+          <a href={`tel:${CONTACT.phoneIntl}`}
+            className="inline-flex items-center gap-3 text-[13px] tracking-wide text-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            {CONTACT.phone}
+          </a>
+        </div>
         <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="md:hidden flex flex-col gap-1.5">
           <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
           <span className={`block h-px w-7 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
@@ -109,7 +112,10 @@ export function SiteNav() {
                 {l.label}
               </a>
             ))}
-            <a href={`tel:${CONTACT.phoneIntl}`} className="text-eyebrow text-accent pt-6">{CONTACT.phone}</a>
+            <div className="flex items-center justify-between pt-6 mt-2 border-t border-border">
+              <a href={`tel:${CONTACT.phoneIntl}`} className="text-eyebrow text-accent">{CONTACT.phone}</a>
+              <LangSwitcher />
+            </div>
           </div>
         </div>
       )}
