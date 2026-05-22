@@ -14,8 +14,9 @@ export const Route = createFileRoute("/products/$slug")({
     meta: loaderData
       ? [
           { title: `${loaderData.product.name} — Yingting Smart` },
-          { name: "description", content: loaderData.product.description },
-          { property: "og:title", content: loaderData.product.name },
+          { name: "description", content: `${loaderData.product.name} by Yingting Smart — ${loaderData.product.tagline}. Apple HomeKit-ready, designed and installed in Hsinchu.` },
+          { property: "og:title", content: `${loaderData.product.name} — Yingting Smart` },
+          { property: "og:description", content: `${loaderData.product.tagline}. Apple HomeKit smart home design and installation.` },
           { property: "og:image", content: loaderData.product.image },
           { property: "og:type", content: "product" },
         ]

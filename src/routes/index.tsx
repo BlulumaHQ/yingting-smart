@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
 import { NEWS, PRODUCTS, CONTACT } from "@/content/site";
 import heroA from "@/assets/yt/A176170525442.webp";
@@ -36,9 +37,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Yingting Smart — Apple HomeKit Smart Living | 穎庭國際智能科技" },
-      { name: "description", content: "Apple HomeKit smart home design & installation in Hsinchu. Lighting, climate, voice — composed into one calm, intelligent home." },
+      { name: "description", content: "Apple HomeKit smart home design and installation in Hsinchu. Lighting, climate and voice composed into one calm, intelligent home — by Yingting Smart." },
       { property: "og:title", content: "Yingting Smart — Smart Living, Refined" },
-      { property: "og:description", content: "Apple HomeKit smart home design & installation in Hsinchu." },
+      { property: "og:description", content: "Apple HomeKit smart home design and installation in Hsinchu. Quiet technology, warm home." },
       { property: "og:image", content: heroA },
       { property: "og:type", content: "website" },
     ],
@@ -400,12 +401,19 @@ function Faq() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 reveal">
-          <FaqColumn items={FAQ_LEFT} startOpen={0} />
-          <FaqColumn items={FAQ_RIGHT} startOpen={0} />
-        </div>
+        <FaqGrid />
       </div>
     </section>
+  );
+}
+
+function FaqGrid() {
+  const isMobile = useIsMobile();
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 reveal">
+      <FaqColumn items={FAQ_LEFT} startOpen={0} />
+      <FaqColumn items={FAQ_RIGHT} startOpen={isMobile ? -1 : 0} />
+    </div>
   );
 }
 
@@ -500,7 +508,7 @@ function Contact() {
                 const inner = (
                   <div className="group grid grid-cols-12 items-baseline gap-4 py-5">
                     <dt className="col-span-4 text-eyebrow text-muted-foreground">{row.k}</dt>
-                    <dd className="col-span-8 text-lg md:text-xl font-light tracking-tight group-hover:text-accent transition-colors">
+                    <dd className="col-span-8 text-base md:text-xl font-light tracking-tight break-words group-hover:text-accent transition-colors">
                       {row.v}
                     </dd>
                   </div>
