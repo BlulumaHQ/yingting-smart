@@ -72,7 +72,7 @@ export const NEWS: NewsItem[] = [
   },
   {
     slug: "what-is-apple-homekit",
-    date: "2026 · 03 · 02",
+    date: "SEP 03, 2024",
     category: "Apple Smart Home",
     title: "What is Apple HomeKit?",
     subtitle: "什麼是 Apple HomeKit？Apple 智能家居安裝",
