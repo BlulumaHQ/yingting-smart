@@ -1,24 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import logo from "@/assets/logo.webp";
+import { useReveal } from "@/hooks/use-reveal";
+import { SiteNav, SiteFooter, StickyContact } from "@/components/site-chrome";
+import { NEWS, PRODUCTS, CONTACT } from "@/content/site";
 import heroA from "@/assets/yt/A176170525442.webp";
 import heroB from "@/assets/yt/B.webp";
-import indHomepod from "@/assets/yt/ind_01.png";
-import indSwitch from "@/assets/yt/ind_02.png";
-import indAc from "@/assets/yt/ind_03.png";
-import ind04 from "@/assets/yt/ind_04.png";
-import news1 from "@/assets/yt/news1.webp";
-import news2 from "@/assets/yt/news2.webp";
-import news3 from "@/assets/yt/news3.webp";
-import news4 from "@/assets/yt/news4.webp";
-import { useReveal } from "@/hooks/use-reveal";
+import bgLiving from "@/assets/yt/bg-living.png";
+import bgDisplay from "@/assets/yt/bg-display.png";
+import phoneCutout from "@/assets/yt/phone-cutout.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "穎庭國際智能科技 — Apple HomeKit Smart Living" },
-      { name: "description", content: "新竹智能家居 — 以 Apple HomeKit 為核心，整合燈光、空調與語音控制，為您打造安心、舒適、被理解的智慧空間。" },
-      { property: "og:title", content: "穎庭國際智能科技 — Smart Living, Redefined" },
+      { title: "Yingting Smart — Apple HomeKit Smart Living | 穎庭國際智能科技" },
+      { name: "description", content: "Apple HomeKit smart home design & installation in Hsinchu. Lighting, climate, voice — composed into one calm, intelligent home." },
+      { property: "og:title", content: "Yingting Smart — Smart Living, Refined" },
       { property: "og:description", content: "Apple HomeKit smart home design & installation in Hsinchu." },
       { property: "og:image", content: heroA },
       { property: "og:type", content: "website" },
@@ -27,111 +23,42 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV = [
-  { label: "About", href: "#about", k: "01" },
-  { label: "Systems", href: "#systems", k: "02" },
-  { label: "Journal", href: "#journal", k: "03" },
-  { label: "Contact", href: "#contact", k: "04" },
-];
-
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : ""
-      }`}
-    >
-      <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-5 md:px-12">
-        <a href="#top" className="flex items-center gap-3">
-          <img src={logo} alt="穎庭智能" width={40} height={40} className="h-10 w-auto" />
-          <div className="hidden sm:block leading-tight">
-            <div className="font-serif text-lg">Yingting Smart</div>
-            <div className="text-eyebrow text-muted-foreground -mt-0.5">穎庭國際智能科技</div>
-          </div>
-        </a>
-        <nav className="hidden md:flex items-center gap-10">
-          {NAV.map((l) => (
-            <a key={l.href} href={l.href}
-              className="group relative text-eyebrow text-muted-foreground hover:text-foreground transition-colors">
-              <span className="text-accent mr-2">{l.k}</span>{l.label}
-            </a>
-          ))}
-        </nav>
-        <a href="tel:+886-3-5335135"
-          className="hidden md:inline-flex items-center gap-3 text-eyebrow text-foreground">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          03 · 5335135
-        </a>
-        <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="md:hidden flex flex-col gap-1.5">
-          <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
-          <span className={`block h-px w-7 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
-          <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
-        </button>
-      </div>
-      {open && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl">
-          <div className="flex flex-col px-6 py-6">
-            {NAV.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)}
-                className="py-3 font-serif text-3xl flex items-baseline gap-4">
-                <span className="text-eyebrow text-accent">{l.k}</span>{l.label}
-              </a>
-            ))}
-            <a href="tel:+886-3-5335135" className="text-eyebrow text-accent pt-6">03 · 5335135</a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
-
 function Hero() {
   return (
-    <section id="top" className="relative pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
+    <section id="top" className="relative pt-28 md:pt-40 pb-16 md:pb-24 overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="reveal in">
           <div className="flex items-center gap-4 text-eyebrow text-muted-foreground mb-10">
             <span className="h-px w-10 bg-accent" />
-            <span>Apple HomeKit · Smart Living · Hsinchu 新竹</span>
+            <span>Apple HomeKit · Smart Living · Hsinchu</span>
           </div>
-          <h1 className="text-display text-[12vw] md:text-[8vw] lg:text-[7rem] max-w-[16ch]">
-            訂製您的
-            <span className="italic"> 專屬</span>
-            <br />生活
-            <span className="italic text-accent">風格。</span>
+          <h1 className="text-display text-[13vw] md:text-[8vw] lg:text-[7.5rem] max-w-[14ch]">
+            Smart living,
+            <br /><span className="italic-serif text-accent">redefined.</span>
           </h1>
         </div>
 
         <div className="mt-16 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 md:col-span-5 reveal in">
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-md">
-              穎庭國際智能科技 — 以 Apple HomeKit 為核心，
-              將燈光、空調與語音控制融入日常，
-              使生活更便利、更貼心、更有溫度。
+            <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md">
+              Yingting Smart designs and installs Apple HomeKit homes —
+              weaving lighting, climate and voice into the quiet rhythm
+              of daily life, so technology fades and home returns.
             </p>
             <div className="mt-10 flex items-center gap-6">
               <a href="#systems"
                 className="inline-flex items-center gap-3 text-eyebrow text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-                探索系統 <span aria-hidden>→</span>
+                Explore systems <span aria-hidden>→</span>
               </a>
               <a href="#contact"
                 className="text-eyebrow text-muted-foreground hover:text-foreground transition-colors">
-                預約諮詢
+                Book a visit
               </a>
             </div>
           </div>
           <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in">
-            <div className="relative aspect-[16/9] overflow-hidden bg-surface">
-              <img src={heroA} alt="穎庭智能家居" fetchPriority="high"
+            <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+              <img src={heroA} alt="Yingting Smart living showcase" fetchPriority="high"
                 className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-tr from-background/15 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-eyebrow">
@@ -143,18 +70,17 @@ function Hero() {
         </div>
       </div>
 
-      {/* marquee accent */}
       <div className="mt-24 md:mt-32 border-y border-border py-5 overflow-hidden">
-        <div className="flex gap-12 whitespace-nowrap text-eyebrow text-muted-foreground animate-[scroll_40s_linear_infinite]">
+        <div className="flex gap-12 whitespace-nowrap text-eyebrow text-muted-foreground animate-[scroll_45s_linear_infinite]">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="flex items-center gap-12">
               <span className="text-foreground">Apple HomeKit</span>
               <span className="text-accent">✦</span>
-              <span>智能家居設計</span>
+              <span>Smart Home Design</span>
               <span className="text-accent">✦</span>
               <span>Lighting · Climate · Voice</span>
               <span className="text-accent">✦</span>
-              <span>新竹 · 香山</span>
+              <span>Hsinchu · Xiangshan</span>
               <span className="text-accent">✦</span>
             </span>
           ))}
@@ -167,13 +93,13 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="relative py-32 md:py-44">
+    <section id="about" className="relative py-28 md:py-44">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-10 lg:gap-16">
           <div className="col-span-12 lg:col-span-5 reveal">
             <div className="sticky top-32">
               <div className="aspect-[4/5] overflow-hidden bg-surface">
-                <img src={heroB} alt="穎庭智能家居生活" loading="lazy"
+                <img src={heroB} alt="Smart living atmosphere" loading="lazy"
                   className="h-full w-full object-cover" />
               </div>
               <div className="mt-5 flex justify-between text-eyebrow text-muted-foreground">
@@ -184,36 +110,38 @@ function About() {
 
           <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal">
             <div className="text-eyebrow text-accent mb-8">A philosophy of home</div>
-            <h2 className="text-display text-4xl md:text-6xl lg:text-[4.5rem]">
-              家的價值不在於華麗，
-              <br /><span className="italic">而在於是否真正</span>
-              <br /><span className="italic text-accent">懂你。</span>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
+              The value of a home isn't its luxury —
+              <br /><span className="italic-serif text-accent">it's whether it understands you.</span>
             </h2>
 
             <div className="mt-14 grid md:grid-cols-2 gap-10 text-[15px] text-muted-foreground leading-[1.85]">
               <p>
-                穎庭國際智能科技由一群熱愛科技、重視生活質感的專業團隊所組成，
-                透過 Apple HomeKit 等智慧系統整合，將燈光、空調與語音控制
-                融入日常，使生活更便利、更貼心、更有溫度。
+                Yingting Smart was founded by a team that cares deeply about
+                technology and the quality of everyday living. Through Apple
+                HomeKit we integrate lighting, climate and voice into the
+                rhythm of daily life — making home a little more attentive,
+                a little warmer, every day.
               </p>
               <p>
-                從每一盞燈光的點亮，到每一次舒適溫度的調整，
-                我們希望科技不只是冷冰冰的功能，而是為團聚、為幸福而存在的橋樑。
-                無論是新成家的你，或想升級生活品質的居所，
-                我們都致力打造一個讓你每一次回家都感到安心、舒適、被理解的智慧空間。
+                From the moment a light comes on to the way a room finds the
+                right temperature, we believe technology shouldn't feel cold.
+                Whether you're starting a new chapter or refining a long-loved
+                home, we build spaces that feel safe, comfortable, and quietly
+                understood.
               </p>
             </div>
 
             <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
               {[
-                { k: "設計", v: "Design" },
-                { k: "安裝", v: "Install" },
-                { k: "規劃", v: "Planning" },
-                { k: "改造", v: "Renew" },
+                { k: "Design", v: "設計" },
+                { k: "Install", v: "安裝" },
+                { k: "Planning", v: "規劃" },
+                { k: "Renew", v: "改造" },
               ].map((i, idx) => (
                 <div key={i.k} className="bg-background p-6 md:p-7">
                   <div className="text-eyebrow text-accent">0{idx + 1}</div>
-                  <div className="font-serif text-3xl mt-3">{i.k}</div>
+                  <div className="text-3xl font-light tracking-tight mt-3">{i.k}</div>
                   <div className="text-eyebrow text-muted-foreground mt-2">{i.v}</div>
                 </div>
               ))}
@@ -225,43 +153,15 @@ function About() {
   );
 }
 
-const SYSTEMS = [
-  {
-    idx: "I",
-    name: "Apple HomePod",
-    zh: "聲控中樞",
-    desc: "以 HomePod 作為居家中樞，透過 Siri 串聯所有場景，讓聲音成為最自然的開關。",
-    img: indHomepod,
-    href: "https://www.ytsmartlife.com/paper/other_page.php?id=13585#A01",
-  },
-  {
-    idx: "II",
-    name: "Light Switch",
-    zh: "智能燈光",
-    desc: "為每一個空間打造專屬的燈光劇本——晨醒、用餐、閱讀、入眠，輕觸即達。",
-    img: indSwitch,
-    href: "https://www.ytsmartlife.com/paper/other_page.php?id=13585#A02",
-  },
-  {
-    idx: "III",
-    name: "AC Controller",
-    zh: "空調溫控",
-    desc: "依據時段、天氣與您的習慣自動調節舒適溫度，讓貼心如呼吸般自然。",
-    img: indAc,
-    href: "https://www.ytsmartlife.com/paper/other_page.php?id=13585#A03",
-  },
-];
-
 function Systems() {
   return (
-    <section id="systems" className="relative py-32 md:py-44 bg-surface-2">
+    <section id="systems" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-6 items-end mb-20 reveal">
           <div className="col-span-12 md:col-span-8">
             <div className="text-eyebrow text-accent mb-6">— Systems · 智能整合</div>
-            <h2 className="text-display text-4xl md:text-6xl lg:text-7xl">
-              Three quiet
-              <span className="italic"> instruments</span>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
+              Three quiet <span className="italic-serif">instruments</span>
               <br />for one calm home.
             </h2>
           </div>
@@ -271,52 +171,59 @@ function Systems() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
-          {SYSTEMS.map((s, i) => (
-            <a key={s.idx} href={s.href}
-              className="group bg-background p-8 md:p-10 flex flex-col reveal hover:bg-surface transition-colors">
+          {PRODUCTS.map((s, i) => (
+            <Link
+              key={s.slug}
+              to="/products/$slug"
+              params={{ slug: s.slug }}
+              className="group bg-background p-8 md:p-10 flex flex-col reveal hover:bg-surface transition-colors"
+            >
               <div className="flex items-baseline justify-between">
                 <span className="text-eyebrow text-accent">0{i + 1}</span>
-                <span className="font-serif italic text-xl text-muted-foreground">{s.idx}</span>
+                <span className="italic-serif text-xl text-muted-foreground">{["I","II","III"][i]}</span>
               </div>
-              <div className="relative aspect-[4/3] mt-8 mb-8 overflow-hidden bg-surface-2">
-                <img src={s.img} alt={s.name} loading="lazy"
+              <div className="relative aspect-[4/3] mt-8 mb-8 overflow-hidden bg-[var(--color-surface-2)]">
+                <img src={s.image} alt={s.name} loading="lazy"
                   className="h-full w-full object-contain p-8 transition-transform duration-[1400ms] ease-out group-hover:scale-105" />
               </div>
               <div className="mt-auto">
-                <div className="text-eyebrow text-muted-foreground mb-2">{s.zh}</div>
-                <h3 className="font-serif text-3xl md:text-4xl group-hover:text-accent transition-colors">
+                <div className="text-eyebrow text-muted-foreground mb-2">{s.tagline}</div>
+                <h3 className="text-3xl md:text-[2.25rem] font-light tracking-tight group-hover:text-accent transition-colors">
                   {s.name}
                 </h3>
-                <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3">{s.description}</p>
                 <div className="mt-8 inline-flex items-center gap-2 text-eyebrow text-foreground">
                   Discover <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
-        {/* showcase */}
+        {/* Showroom — uses original lifestyle bg image with transparent phone */}
         <div className="mt-24 md:mt-32 grid grid-cols-12 gap-6 items-center reveal">
           <div className="col-span-12 md:col-span-5 md:order-2">
             <div className="text-eyebrow text-accent mb-6">— Showroom</div>
-            <h3 className="text-display text-3xl md:text-5xl">
-              一觸即達的
-              <br /><span className="italic">日常儀式。</span>
+            <h3 className="text-display-md text-3xl md:text-5xl">
+              The daily ritual,
+              <br /><span className="italic-serif">a single touch away.</span>
             </h3>
-            <p className="mt-8 text-muted-foreground leading-relaxed max-w-md">
-              場景控制、節能管理、安全感知 — 透過單一介面整合，
-              讓智能成為空間的安靜底色，而非干擾。
+            <p className="mt-8 text-muted-foreground leading-[1.85] max-w-md">
+              Scene control, energy management, ambient awareness —
+              composed into one interface so intelligence becomes the quiet
+              backdrop of the space, never the interruption.
             </p>
             <a href="#contact"
               className="mt-10 inline-flex items-center gap-3 text-eyebrow border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-              預約展示間 <span>→</span>
+              Book a showroom visit <span>→</span>
             </a>
           </div>
           <div className="col-span-12 md:col-span-7 md:order-1">
-            <div className="relative aspect-[4/5] md:aspect-[4/5] max-h-[680px] overflow-hidden bg-surface">
-              <img src={ind04} alt="穎庭智能家居展示" loading="lazy"
-                className="h-full w-full object-cover" />
+            <div className="relative aspect-[5/4] overflow-hidden bg-[var(--color-accent-soft)]/40">
+              <img src={bgLiving} alt="Smart living atmosphere" loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover" />
+              <img src={phoneCutout} alt="HomeKit app on iPhone" loading="lazy"
+                className="absolute right-4 md:right-10 bottom-0 h-[95%] w-auto object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -325,46 +232,135 @@ function Systems() {
   );
 }
 
-const JOURNAL = [
-  { date: "2026 · 03 · 02", title: "智能家居如遇停電要怎麼辦？", cat: "智能家居規劃", img: news1, href: "https://www.ytsmartlife.com/news/details.php?id=34616" },
-  { date: "2026 · 03 · 02", title: "使用 HomeKit 一定要有 HomePod 或 Apple TV 嗎？", cat: "Apple HomeKit 安裝", img: news2, href: "https://www.ytsmartlife.com/news/details.php?id=34615" },
-  { date: "2026 · 03 · 02", title: "什麼是 Apple HomeKit？", cat: "Apple 智能家居安裝", img: news3, href: "https://www.ytsmartlife.com/news/details.php?id=34603" },
-  { date: "2026 · 03 · 02", title: "舊屋可以裝智能家居嗎？", cat: "智能家居改造", img: news4, href: "https://www.ytsmartlife.com/news/details.php?id=34602" },
+/* --- FAQ -------------------------------------------------------- */
+
+const FAQ_LEFT = [
+  {
+    q: "What is Apple HomeKit?",
+    a: "Apple's smart-home platform. Every HomeKit-certified accessory in your home — lights, AC, locks, sensors — is managed from one place, the Home app on your Apple devices. The Home app is the conductor; HomeKit keeps everything in tune."
+  },
+  {
+    q: "Do I need a HomePod or Apple TV?",
+    a: "Not for basic on/off control. But for remote access, reliable automations, and full voice — yes, a home hub is essential. We usually recommend HomePod for an Apple-first smart home."
+  },
+  {
+    q: "What happens during a power outage?",
+    a: "Devices pause, then recover automatically when power returns. HomeKit settings and automations are stored on the system, not in the cloud, so nothing needs to be reset."
+  }
 ];
+
+const FAQ_RIGHT = [
+  {
+    q: "Can older homes be upgraded to a smart home?",
+    a: "Yes. Most upgrades — smart switches, AC controllers, smart plugs — are direct replacements that don't require breaking walls or rewiring. We assess neutral-line, Wi-Fi coverage and the panel before planning."
+  },
+  {
+    q: "Where should we start?",
+    a: "Smart lighting gives the most immediate impact. AC control improves comfort and energy use. A HomePod hub ties the system together with voice — that's a complete first phase."
+  },
+  {
+    q: "Do you offer on-site planning?",
+    a: "Yes. We schedule consultations and showroom visits in Hsinchu. We walk through the home, review network and electrical conditions, and propose a phased plan that fits the way you actually live."
+  }
+];
+
+function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; startOpen: number }) {
+  const [open, setOpen] = useState<number>(startOpen);
+  return (
+    <ul className="space-y-px bg-border">
+      {items.map((it, idx) => {
+        const isOpen = open === idx;
+        return (
+          <li key={it.q} className="bg-background">
+            <button
+              onClick={() => setOpen(isOpen ? -1 : idx)}
+              className="w-full flex items-start justify-between gap-6 py-7 text-left group"
+            >
+              <span className="text-[18px] md:text-[20px] font-normal tracking-tight pr-4 group-hover:text-accent transition-colors">
+                {it.q}
+              </span>
+              <span className={`mt-1.5 grid place-items-center h-7 w-7 shrink-0 rounded-full border border-border
+                              transition-all duration-500 ${isOpen ? "bg-accent border-accent rotate-45" : "bg-transparent"}`}>
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" className={isOpen ? "text-accent-foreground" : "text-foreground"}>
+                  <path d="M5.5 1v9M1 5.5h9" stroke="currentColor" strokeWidth="1.2" />
+                </svg>
+              </span>
+            </button>
+            <div
+              className="grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.2,.6,.2,1)]"
+              style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+            >
+              <div className="overflow-hidden">
+                <p className="pb-7 pr-10 text-[15px] text-muted-foreground leading-[1.85] max-w-prose">
+                  {it.a}
+                </p>
+              </div>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function Faq() {
+  return (
+    <section id="faq" className="relative py-28 md:py-40 bg-background">
+      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+        <div className="grid grid-cols-12 gap-6 items-end mb-16 reveal">
+          <div className="col-span-12 md:col-span-8">
+            <div className="text-eyebrow text-accent mb-6">— FAQ · 常見問題</div>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
+              Questions, <span className="italic-serif">answered.</span>
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
+            06 — Frequently Asked
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 reveal">
+          <FaqColumn items={FAQ_LEFT} startOpen={0} />
+          <FaqColumn items={FAQ_RIGHT} startOpen={0} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* --- Journal --------------------------------------------------- */
 
 function Journal() {
   return (
-    <section id="journal" className="relative py-32 md:py-44">
+    <section id="journal" className="relative py-28 md:py-44 bg-[var(--color-surface-2)]">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
             <div className="text-eyebrow text-accent mb-6">— Journal · 最新資訊</div>
-            <h2 className="text-display text-4xl md:text-6xl lg:text-7xl">News &<span className="italic"> Notes.</span></h2>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
+              News &<span className="italic-serif"> notes.</span>
+            </h2>
           </div>
-          <a href="https://www.ytsmartlife.com/news/index.php"
-            className="text-eyebrow text-muted-foreground hover:text-accent transition-colors border-b border-border hover:border-accent pb-1">
-            View all →
-          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
-          {JOURNAL.map((p) => (
-            <a key={p.title} href={p.href} className="group reveal block">
+          {NEWS.map((p) => (
+            <Link key={p.slug} to="/news/$slug" params={{ slug: p.slug }} className="group reveal block">
               <div className="relative aspect-[5/3] overflow-hidden bg-surface-2">
-                <img src={p.img} alt={p.title} loading="lazy"
+                <img src={p.image} alt={p.title} loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]" />
                 <div className="absolute top-4 left-4 bg-background/90 backdrop-blur px-3 py-1.5 text-eyebrow">
-                  {p.cat}
+                  {p.category}
                 </div>
               </div>
               <div className="mt-6 flex items-baseline justify-between text-eyebrow text-muted-foreground">
                 <span>{p.date}</span>
                 <span className="text-accent">↗</span>
               </div>
-              <h3 className="mt-3 font-serif text-2xl md:text-3xl leading-tight group-hover:text-accent transition-colors">
+              <h3 className="mt-3 text-2xl md:text-[1.6rem] leading-snug font-light tracking-tight group-hover:text-accent transition-colors">
                 {p.title}
               </h3>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -374,47 +370,50 @@ function Journal() {
 
 function Contact() {
   return (
-    <section id="contact" className="relative py-32 md:py-44 bg-foreground text-background">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+    <section id="contact" className="relative py-28 md:py-44 overflow-hidden">
+      <img src={bgDisplay} alt="" aria-hidden
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="grid grid-cols-12 gap-10">
           <div className="col-span-12 lg:col-span-7 reveal">
             <div className="text-eyebrow text-accent mb-8">— Contact · 聯絡我們</div>
             <h2 className="text-display text-5xl md:text-7xl lg:text-8xl">
-              Let’s design
-              <br /><span className="italic">your home.</span>
+              Let's design
+              <br /><span className="italic-serif text-accent">your home.</span>
             </h2>
-            <p className="mt-10 max-w-md text-[15px] leading-relaxed opacity-70">
-              歡迎預約展示間參觀，或透過電話、LINE 與我們聯繫，
-              開始規劃您的智慧居家。
+            <p className="mt-10 max-w-md text-[15px] leading-[1.85] text-muted-foreground">
+              Visit our showroom in Hsinchu, or reach us by phone or LINE.
+              We'll begin with the way you live, then design the home around it.
             </p>
 
-            <div className="mt-16 flex flex-wrap gap-4">
-              <a href="tel:+886-3-5335135"
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-background hover:text-foreground transition-colors">
-                致電 · Call <span>→</span>
+            <div className="mt-14 flex flex-wrap gap-4">
+              <a href={`tel:${CONTACT.phoneIntl}`}
+                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors">
+                Call · {CONTACT.phone} <span>→</span>
               </a>
-              <a href="https://line.me/R/ti/p/%40593ssbfh"
-                className="inline-flex items-center gap-3 border border-background/30 px-7 py-4 text-eyebrow hover:border-accent hover:text-accent transition-colors">
-                LINE · @593ssbfh
+              <a href={CONTACT.lineUrl} target="_blank" rel="noreferrer"
+                className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors">
+                LINE · {CONTACT.line}
               </a>
             </div>
           </div>
 
           <div className="col-span-12 lg:col-span-5 reveal">
-            <dl className="divide-y divide-background/15 border-y border-background/15">
+            <dl className="divide-y divide-border border-y border-border">
               {[
-                { k: "Phone", v: "03 · 5335135", href: "tel:+886-3-5335135" },
-                { k: "LINE", v: "@593ssbfh", href: "https://line.me/R/ti/p/%40593ssbfh" },
-                { k: "Facebook", v: "YouNeedSmartLife", href: "https://www.facebook.com/YouNeedSmartLife/" },
-                { k: "Instagram", v: "@yt_smartlife", href: "https://www.instagram.com/yt_smartlife/" },
-                { k: "Studio", v: "新竹市香山區中華路五段500號" },
-                { k: "Hours", v: "週一 — 週日 10:00–20:00" },
-                { k: "統編", v: "83061544" },
+                { k: "Phone", v: CONTACT.phone, href: `tel:${CONTACT.phoneIntl}` },
+                { k: "LINE", v: CONTACT.line, href: CONTACT.lineUrl },
+                { k: "Facebook", v: "YouNeedSmartLife", href: CONTACT.fb },
+                { k: "Instagram", v: "@yt_smartlife", href: CONTACT.ig },
+                { k: "Studio", v: CONTACT.addressZh },
+                { k: "Hours", v: CONTACT.hours },
+                { k: "Tax ID", v: CONTACT.taxId },
               ].map((row) => {
                 const inner = (
                   <div className="group grid grid-cols-12 items-baseline gap-4 py-5">
-                    <dt className="col-span-4 text-eyebrow opacity-60">{row.k}</dt>
-                    <dd className="col-span-8 font-serif text-xl md:text-2xl group-hover:text-accent transition-colors">
+                    <dt className="col-span-4 text-eyebrow text-muted-foreground">{row.k}</dt>
+                    <dd className="col-span-8 text-lg md:text-xl font-light tracking-tight group-hover:text-accent transition-colors">
                       {row.v}
                     </dd>
                   </div>
@@ -431,37 +430,19 @@ function Contact() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-foreground text-background border-t border-background/15">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="flex items-center gap-3">
-          <img src={logo} alt="" width={32} height={32} className="h-8 w-auto bg-background rounded-sm p-1" />
-          <div className="text-eyebrow opacity-70">
-            穎庭國際智能科技 · Yingting Smart Living
-          </div>
-        </div>
-        <div className="flex items-center gap-6 text-eyebrow opacity-70">
-          <a href="https://www.ytsmartlife.com/paper/privacy_policy.php" className="hover:text-accent hover:opacity-100">Privacy</a>
-          <a href="https://www.ytsmartlife.com/paper/terms.php" className="hover:text-accent hover:opacity-100">Terms</a>
-          <span>© 2026</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 function Index() {
   useReveal();
   return (
     <main className="relative bg-background text-foreground">
-      <Nav />
+      <SiteNav />
+      <StickyContact />
       <Hero />
       <About />
       <Systems />
+      <Faq />
       <Journal />
       <Contact />
-      <Footer />
+      <SiteFooter />
     </main>
   );
 }
