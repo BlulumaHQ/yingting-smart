@@ -180,7 +180,7 @@ function About() {
           <div className="col-span-12 lg:col-span-5 reveal">
             <div className="sticky top-32">
               <div className="aspect-[4/5] overflow-hidden bg-surface">
-                <img src={heroB} alt="Smart living atmosphere" loading="lazy"
+                <img src={aboutElevator} alt="Yingting Smart home entry — elevator hall with marble flooring" loading="lazy"
                   className="h-full w-full object-cover" />
               </div>
               <div className="mt-5 flex justify-between text-eyebrow text-muted-foreground">
@@ -414,9 +414,8 @@ function Faq() {
 function Insights() {
   return (
     <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
-      <img src={frBg03} alt="" aria-hidden
-        className="absolute top-0 right-0 w-[60%] opacity-60 pointer-events-none select-none
-                   [filter:hue-rotate(170deg)_saturate(1.5)]" />
+      <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px]" />
+      <div className="pointer-events-none absolute top-1/4 left-0 h-px w-[28%] bg-gradient-to-l from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
