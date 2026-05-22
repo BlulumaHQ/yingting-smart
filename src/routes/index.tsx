@@ -345,51 +345,68 @@ function Systems() {
 
 /* --- FAQ -------------------------------------------------------- */
 
-const FAQ_LEFT = [
+type FaqItem = { q: string; a: string; qZh: string; aZh: string };
+
+const FAQ_LEFT: FaqItem[] = [
   {
     q: "What is Apple HomeKit?",
-    a: "Apple's smart-home platform. Every HomeKit-certified accessory in your home — lights, AC, locks, sensors — is managed from one place, the Home app on your Apple devices. The Home app is the conductor; HomeKit keeps everything in tune."
+    qZh: "什麼是 Apple HomeKit？",
+    a: "Apple's smart-home platform. Every HomeKit-certified accessory in your home — lights, AC, locks, sensors — is managed from one place, the Home app on your Apple devices. The Home app is the conductor; HomeKit keeps everything in tune.",
+    aZh: "Apple 的智慧家庭平台。家中所有 HomeKit 認證設備——燈光、空調、門鎖、感應器——都能在 Apple 裝置的「家庭」App 中集中管理。「家庭」App 是指揮者，HomeKit 讓所有設備協調一致。"
   },
   {
     q: "Do I need a HomePod or Apple TV?",
-    a: "Not for basic on/off control. But for remote access, reliable automations, and full voice — yes, a home hub is essential. We usually recommend HomePod for an Apple-first smart home."
+    qZh: "我需要 HomePod 或 Apple TV 嗎？",
+    a: "Not for basic on/off control. But for remote access, reliable automations, and full voice — yes, a home hub is essential. We usually recommend HomePod for an Apple-first smart home.",
+    aZh: "基本開關控制不需要。但若要遠端遙控、穩定的自動化與完整語音控制，就需要一台家庭中樞。我們通常建議以 HomePod 作為 Apple 智慧家庭的核心。"
   },
   {
     q: "What happens during a power outage?",
-    a: "Devices pause, then recover automatically when power returns. HomeKit settings and automations are stored on the system, not in the cloud, so nothing needs to be reset."
+    qZh: "停電時會發生什麼事？",
+    a: "Most smart home devices return to their previous state after power is restored. We also help plan essential circuits and explain what should remain manual for safety.",
+    aZh: "多數智慧家庭設備會在復電後回到原本狀態。我們也會協助規劃必要迴路，並說明哪些設備基於安全考量應保留手動控制。"
   }
 ];
 
-const FAQ_RIGHT = [
+const FAQ_RIGHT: FaqItem[] = [
   {
     q: "Can older homes be upgraded to a smart home?",
-    a: "Yes. Most upgrades — smart switches, AC controllers, smart plugs — are direct replacements that don't require breaking walls or rewiring. We assess neutral-line, Wi-Fi coverage and the panel before planning."
+    qZh: "老屋也可以升級成智慧家庭嗎？",
+    a: "Yes. Most upgrades — smart switches, AC controllers, smart plugs — are direct replacements that don't require breaking walls or rewiring. We assess neutral-line, Wi-Fi coverage and the panel before planning.",
+    aZh: "可以。多數升級項目，例如智慧開關、冷氣控制器、智慧插座，都能以替換方式安裝，不一定需要敲牆或重新配線。我們會先評估中性線、Wi-Fi 覆蓋與電箱狀況，再進行規劃。"
   },
   {
     q: "Where should we start?",
-    a: "Smart lighting gives the most immediate impact. AC control improves comfort and energy use. A HomePod hub ties the system together with voice — that's a complete first phase."
+    qZh: "我們應該從哪裡開始？",
+    a: "Start with lighting and climate. These are the two areas people feel every day, and they create the biggest improvement with the least disruption.",
+    aZh: "建議從燈光與空調開始。這兩項是每天最直接感受到的生活體驗，也通常能以較低干擾帶來最明顯的改善。"
   },
   {
     q: "Do you offer on-site planning?",
-    a: "Yes. We schedule consultations and showroom visits in Hsinchu. We walk through the home, review network and electrical conditions, and propose a phased plan that fits the way you actually live."
+    qZh: "你們提供現場規劃嗎？",
+    a: "Yes. We can visit your home or showroom, review the space, understand your lifestyle and then recommend the right HomeKit setup.",
+    aZh: "有。我們可以到住宅或展示空間現場了解環境、動線與生活需求，再建議合適的 HomeKit 規劃方式。"
   }
 ];
 
-function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; startOpen: number }) {
+function FaqColumn({ items, startOpen }: { items: FaqItem[]; startOpen: number }) {
   const [open, setOpen] = useState<number>(startOpen);
+  const { lang } = useLang();
   useEffect(() => { setOpen(startOpen); }, [startOpen]);
   return (
-    <ul className="space-y-px bg-border">
+    <ul className="space-y-px bg-border min-w-0">
       {items.map((it, idx) => {
         const isOpen = open === idx;
+        const q = lang === "中" ? it.qZh : it.q;
+        const a = lang === "中" ? it.aZh : it.a;
         return (
-          <li key={it.q} className="bg-background">
+          <li key={it.q} className="bg-background min-w-0">
             <button
               onClick={() => setOpen(isOpen ? -1 : idx)}
-              className="w-full flex items-start justify-between gap-6 py-7 text-left group"
+              className="w-full flex items-start justify-between gap-4 py-7 text-left group"
             >
-              <span className="text-[18px] md:text-[20px] font-normal tracking-tight pr-4 group-hover:text-accent transition-colors">
-                {it.q}
+              <span className="min-w-0 text-[18px] md:text-[20px] font-normal tracking-tight pr-2 group-hover:text-accent transition-colors break-words">
+                {q}
               </span>
               <span className={`mt-1.5 grid place-items-center h-7 w-7 shrink-0 rounded-full border border-border
                               transition-all duration-500 ${isOpen ? "bg-accent border-accent rotate-45" : "bg-transparent"}`}>
@@ -403,8 +420,8 @@ function FaqColumn({ items, startOpen }: { items: { q: string; a: string }[]; st
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="pb-7 pr-10 text-[15px] text-muted-foreground leading-[1.85] max-w-prose">
-                  {it.a}
+                <p className="pb-7 pr-2 md:pr-10 text-[15px] text-muted-foreground leading-[1.85] max-w-prose break-words">
+                  {a}
                 </p>
               </div>
             </div>
