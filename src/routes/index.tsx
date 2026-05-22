@@ -474,7 +474,7 @@ function FaqGrid() {
 function Insights() {
   return (
     <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
-      <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px]" />
+      <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px] max-w-none" />
       <div className="pointer-events-none absolute top-1/4 left-0 h-px w-[28%] bg-gradient-to-l from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-16 reveal">
