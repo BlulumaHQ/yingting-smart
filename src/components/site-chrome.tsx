@@ -1,5 +1,46 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+
+/* Lightweight language switcher.
+   Persists choice in localStorage and toggles document.documentElement.lang
+   so future i18n wiring can hang off a single source of truth. */
+function useLang() {
+  const [lang, setLang] = useState<"EN" | "中">("EN");
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("yt-lang") as "EN" | "中" | null;
+      if (stored) setLang(stored);
+    } catch { /* noop */ }
+  }, []);
+  useEffect(() => {
+    try { localStorage.setItem("yt-lang", lang); } catch { /* noop */ }
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang === "中" ? "zh-Hant" : "en";
+    }
+  }, [lang]);
+  return { lang, setLang };
+}
+
+function LangSwitcher({ className = "" }: { className?: string }) {
+  const { lang, setLang } = useLang();
+  return (
+    <div className={`inline-flex items-center gap-2 text-[12px] tracking-[0.18em] ${className}`}>
+      {(["EN", "中"] as const).map((code, i) => (
+        <span key={code} className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setLang(code)}
+            aria-pressed={lang === code}
+            className={`transition-colors ${lang === code ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+          >
+            {code}
+          </button>
+          {i === 0 && <span className="h-3 w-px bg-border" />}
+        </span>
+      ))}
+    </div>
+  );
+}
 import logo from "@/assets/logo.webp";
 import iconTel from "@/assets/yt/icon-tel.svg";
 import iconLine from "@/assets/yt/icon-line.svg";
