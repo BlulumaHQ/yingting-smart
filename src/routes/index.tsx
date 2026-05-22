@@ -146,7 +146,7 @@ function Hero() {
     return () => clearInterval(t);
   }, []);
   return (
-    <section id="top" className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden">
+    <section id="top" className="relative pt-[156px] md:pt-32 pb-12 md:pb-20 overflow-hidden">
       <div className="relative min-h-[78vh] md:min-h-[82vh]">
         <div className={`transition-opacity duration-[1400ms] ease-out ${slide === 0 ? "opacity-100" : "opacity-0 pointer-events-none absolute inset-0"}`}>
           <HeroSlideA />
@@ -186,13 +186,13 @@ function Hero() {
 
 
 function About() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
-    <section id="about" className="relative py-28 md:py-44 overflow-hidden">
+    <section id="about" className="about-section relative py-28 md:py-44 md:overflow-hidden overflow-visible">
       {/* Subtle brand line decoration — kept inside overflow-hidden parent so it never causes horizontal scroll */}
-      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px] max-w-none" />
+      <LineAccent className="absolute -top-24 right-0 md:-right-32 h-[640px] w-[640px] max-w-none" />
       <div className="pointer-events-none absolute top-1/3 right-0 h-px w-[28%] bg-gradient-to-r from-transparent to-accent/40" />
-      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
+      <div className="section-inner relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-12 reveal gap-4">
           <div className="text-eyebrow text-accent">— About · 關於我們</div>
           <div className="text-eyebrow text-muted-foreground">02 — About</div>
@@ -200,7 +200,7 @@ function About() {
         <div className="grid grid-cols-12 gap-10 lg:gap-16">
           <div className="col-span-12 lg:col-span-5 reveal min-w-0">
             <div className="sticky top-32">
-              <div className="aspect-[4/5] overflow-hidden bg-surface">
+              <div className="about-image aspect-[4/5] overflow-hidden bg-surface">
                 <img src={aboutElevator} alt="Yingting Smart home entry — elevator hall with marble flooring" loading="lazy"
                   className="h-full w-full object-cover" />
               </div>
@@ -234,7 +234,7 @@ function About() {
               </p>
             </div>
 
-            <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
+            <div className="about-grid mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
               {[
                 { k: "Design", v: "設計" },
                 { k: "Install", v: "安裝" },
@@ -244,7 +244,7 @@ function About() {
                 <div key={i.k} className="bg-background p-6 md:p-7 min-w-0">
                   <div className="text-eyebrow text-accent">0{idx + 1}</div>
                   <div className="text-3xl font-light tracking-tight mt-3">{t(i.k, i.v)}</div>
-                  <div className="text-eyebrow text-muted-foreground mt-2">{i.v}</div>
+                  {lang !== "中" && <div className="text-eyebrow text-muted-foreground mt-2">{i.v}</div>}
                 </div>
               ))}
             </div>
@@ -278,7 +278,11 @@ function Systems() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
-          {PRODUCTS.map((s, i) => (
+          {PRODUCTS.map((s, i) => {
+            const name = lang === "中" ? (s.nameZh ?? s.name) : s.name;
+            const tagline = lang === "中" ? (s.taglineZh ?? s.tagline) : s.tagline;
+            const description = lang === "中" ? (s.descriptionZh ?? s.description) : s.description;
+            return (
             <Link
               key={s.slug}
               to="/products/$slug"
@@ -290,21 +294,21 @@ function Systems() {
                 <span className="italic-serif text-xl text-muted-foreground">{["I","II","III"][i]}</span>
               </div>
               <div className="relative aspect-[4/3] mt-8 mb-8 overflow-hidden bg-[var(--color-surface-2)]">
-                <img src={s.image} alt={s.name} loading="lazy"
+                <img src={s.image} alt={name} loading="lazy"
                   className="h-full w-full object-contain p-8 transition-transform duration-[1400ms] ease-out group-hover:scale-105" />
               </div>
               <div className="mt-auto">
-                <div className="text-eyebrow text-muted-foreground mb-2">{s.tagline}</div>
+                <div className="text-eyebrow text-muted-foreground mb-2">{tagline}</div>
                 <h3 className="text-3xl md:text-[2.25rem] font-light tracking-tight group-hover:text-accent transition-colors break-words">
-                  {s.name}
+                  {name}
                 </h3>
-                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3 break-words">{s.description}</p>
+                <p className="mt-5 text-sm text-muted-foreground leading-relaxed line-clamp-3 break-words">{description}</p>
                 <div className="mt-8 inline-flex items-center gap-2 text-eyebrow text-foreground">
                   {t("Discover", "了解更多")} <span className="transition-transform group-hover:translate-x-1">→</span>
                 </div>
               </div>
             </Link>
-          ))}
+          );})}
         </div>
 
         {/* Showroom — uses original lifestyle bg image with transparent phone */}
@@ -472,6 +476,7 @@ function FaqGrid() {
 /* --- Insights --------------------------------------------------- */
 
 function Insights() {
+  const { lang } = useLang();
   return (
     <section id="insights" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
       <LineAccent className="absolute -top-32 -left-32 h-[640px] w-[640px] max-w-none" />
@@ -480,32 +485,35 @@ function Insights() {
         <div className="flex items-end justify-between mb-16 reveal">
           <div>
             <div className="text-eyebrow text-accent mb-6">— Insights · 洞察觀點</div>
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl">
-              News &<span className="italic-serif"> notes.</span>
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl break-words">
+              {lang === "中" ? <>消息與<span className="italic-serif">筆記。</span></> : <>News &<span className="italic-serif"> notes.</span></>}
             </h2>
           </div>
           <div className="text-eyebrow text-muted-foreground">05 — Insights</div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
-          {NEWS.map((p) => (
+          {NEWS.map((p) => {
+            const title = lang === "中" ? (p.titleZh ?? p.title) : p.title;
+            const category = lang === "中" ? (p.categoryZh ?? p.category) : p.category;
+            return (
             <Link key={p.slug} to="/news/$slug" params={{ slug: p.slug }} className="group reveal block">
               <div className="relative aspect-[5/3] overflow-hidden bg-surface-2">
-                <img src={p.image} alt={p.title} loading="lazy"
+                <img src={p.image} alt={title} loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]" />
                 <div className="absolute top-4 left-4 bg-background/90 backdrop-blur px-3 py-1.5 text-eyebrow">
-                  {p.category}
+                  {category}
                 </div>
               </div>
               <div className="mt-6 flex items-baseline justify-between text-eyebrow text-muted-foreground">
                 <span>{p.date}</span>
                 <span className="text-accent">↗</span>
               </div>
-              <h3 className="mt-3 text-2xl md:text-[1.6rem] leading-snug font-light tracking-tight group-hover:text-accent transition-colors">
-                {p.title}
+              <h3 className="mt-3 text-2xl md:text-[1.6rem] leading-snug font-light tracking-tight group-hover:text-accent transition-colors break-words">
+                {title}
               </h3>
             </Link>
-          ))}
+          );})}
         </div>
       </div>
     </section>
@@ -515,17 +523,17 @@ function Insights() {
 function Contact() {
   const { t, lang } = useLang();
   return (
-    <section id="contact" className="relative py-28 md:py-44 overflow-hidden">
+    <section id="contact" className="contact-section relative py-28 md:py-44 overflow-visible md:overflow-hidden">
       <img src={bgDisplay} alt="" aria-hidden
         className="absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
+      <div className="section-inner relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-10 reveal gap-4">
           <div className="text-eyebrow text-accent">— Contact · 聯絡我們</div>
           <div className="text-eyebrow text-muted-foreground">06 — Contact</div>
         </div>
         <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 lg:col-span-7 reveal min-w-0">
+          <div className="contact-copy col-span-12 lg:col-span-7 reveal min-w-0">
             <h2 className="text-display text-5xl md:text-7xl lg:text-8xl break-words">
               {lang === "中" ? (
                 <>一起設計<br /><span className="italic-serif text-accent">更懂你的家。</span></>
@@ -540,7 +548,7 @@ function Contact() {
               )}
             </p>
 
-            <div className="mt-14 flex flex-wrap gap-4">
+            <div className="contact-actions mt-14 flex flex-wrap gap-4">
               <a href={`tel:${CONTACT.phoneIntl}`}
                 className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors max-w-full">
                 {t("Call", "電話")} · {CONTACT.phone} <span>→</span>
@@ -552,7 +560,7 @@ function Contact() {
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-5 reveal min-w-0">
+          <div className="contact-details col-span-12 lg:col-span-5 reveal min-w-0">
             <dl className="divide-y divide-border border-y border-border">
               {[
                 { k: "Phone", v: CONTACT.phone, href: `tel:${CONTACT.phoneIntl}` },
