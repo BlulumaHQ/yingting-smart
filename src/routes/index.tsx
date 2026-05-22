@@ -186,18 +186,19 @@ function Hero() {
 
 
 function About() {
+  const { t } = useLang();
   return (
     <section id="about" className="relative py-28 md:py-44 overflow-hidden">
-      {/* Subtle brand line decoration */}
-      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px]" />
+      {/* Subtle brand line decoration — kept inside overflow-hidden parent so it never causes horizontal scroll */}
+      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px] max-w-none" />
       <div className="pointer-events-none absolute top-1/3 right-0 h-px w-[28%] bg-gradient-to-r from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
-        <div className="flex items-end justify-between mb-12 reveal">
+        <div className="flex items-end justify-between mb-12 reveal gap-4">
           <div className="text-eyebrow text-accent">— About · 關於我們</div>
           <div className="text-eyebrow text-muted-foreground">02 — About</div>
         </div>
         <div className="grid grid-cols-12 gap-10 lg:gap-16">
-          <div className="col-span-12 lg:col-span-5 reveal">
+          <div className="col-span-12 lg:col-span-5 reveal min-w-0">
             <div className="sticky top-32">
               <div className="aspect-[4/5] overflow-hidden bg-surface">
                 <img src={aboutElevator} alt="Yingting Smart home entry — elevator hall with marble flooring" loading="lazy"
@@ -209,26 +210,27 @@ function About() {
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal">
-            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem]">
-              The value of a home isn't its luxury —
-              <br /><span className="italic-serif text-accent">it's whether it understands you.</span>
+          <div className="col-span-12 lg:col-span-7 lg:pl-6 reveal min-w-0">
+            <h2 className="text-display-md text-4xl md:text-6xl lg:text-[4.5rem] break-words">
+              {t(
+                "The value of a home isn't its luxury —",
+                "家的價值不在於奢華，"
+              )}
+              <br /><span className="italic-serif text-accent">{t("it's whether it understands you.", "而在於它是否真正懂你。")}</span>
             </h2>
 
             <div className="mt-14 grid md:grid-cols-2 gap-10 text-[15px] text-muted-foreground leading-[1.85]">
-              <p>
-                Yingting Smart was founded by a team that cares deeply about
-                technology and the quality of everyday living. Through Apple
-                HomeKit we integrate lighting, climate and voice into the
-                rhythm of daily life — making home a little more attentive,
-                a little warmer, every day.
+              <p className="break-words">
+                {t(
+                  "Yingting Smart was founded by a team that cares deeply about technology and the quality of everyday living. Through Apple HomeKit we integrate lighting, climate and voice into the rhythm of daily life — making home a little more attentive, a little warmer, every day.",
+                  "穎庭智能由一群重視科技與生活品質的團隊成立。我們透過 Apple HomeKit，將燈光、空調、語音控制整合進日常生活節奏，讓家每天都更貼心、更溫暖一點。"
+                )}
               </p>
-              <p>
-                From the moment a light comes on to the way a room finds the
-                right temperature, we believe technology shouldn't feel cold.
-                Whether you're starting a new chapter or refining a long-loved
-                home, we build spaces that feel safe, comfortable, and quietly
-                understood.
+              <p className="break-words">
+                {t(
+                  "From the moment a light comes on to the way a room finds the right temperature, we believe technology shouldn't feel complicated. Whether you're starting a new chapter or refining a long-loved home, we build spaces that feel safe, comfortable, and quietly understood.",
+                  "從燈光亮起的瞬間，到空間自動調整到舒適溫度，我們相信科技不應該讓人感到複雜。無論是新家規劃，或是既有住宅升級，我們都希望打造一個安全、舒適、安靜懂你的生活空間。"
+                )}
               </p>
             </div>
 
@@ -239,9 +241,9 @@ function About() {
                 { k: "Planning", v: "規劃" },
                 { k: "Renew", v: "改造" },
               ].map((i, idx) => (
-                <div key={i.k} className="bg-background p-6 md:p-7">
+                <div key={i.k} className="bg-background p-6 md:p-7 min-w-0">
                   <div className="text-eyebrow text-accent">0{idx + 1}</div>
-                  <div className="text-3xl font-light tracking-tight mt-3">{i.k}</div>
+                  <div className="text-3xl font-light tracking-tight mt-3">{t(i.k, i.v)}</div>
                   <div className="text-eyebrow text-muted-foreground mt-2">{i.v}</div>
                 </div>
               ))}
