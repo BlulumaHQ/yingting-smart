@@ -144,15 +144,16 @@ export function StickyContact() {
           </a>
         ))}
       </div>
-      {/* Mobile bottom bar */}
+      {/* Mobile bottom bar — brand cyan, premium floating */}
       <div className="md:hidden fixed inset-x-4 bottom-4 z-40 flex items-center justify-around gap-2
-                      rounded-full bg-foreground/95 backdrop-blur px-4 py-2.5
-                      shadow-[0_18px_40px_-16px_rgba(34,55,75,0.45)]">
+                      rounded-full bg-accent px-4 py-2.5
+                      shadow-[0_18px_40px_-12px_oklch(0.78_0.085_210/0.55)]
+                      ring-1 ring-[oklch(0.78_0.085_210/0.4)]">
         {items.map((it) => (
           <a key={it.label} href={it.href} target="_blank" rel="noreferrer"
             aria-label={it.label}
-            className="h-9 w-9 grid place-items-center rounded-full">
-            <img src={it.icon} alt="" className="h-5 w-5" />
+            className="h-9 w-9 grid place-items-center rounded-full transition-transform active:scale-95">
+            <img src={it.icon} alt="" className="h-5 w-5 [filter:brightness(0)_invert(1)]" />
           </a>
         ))}
       </div>
