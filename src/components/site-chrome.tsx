@@ -117,7 +117,6 @@ export function SiteNav() {
             ))}
             <div className="flex items-center justify-between pt-6 mt-2 border-t border-border">
               <a href={`tel:${CONTACT.phoneIntl}`} className="text-eyebrow text-accent">{CONTACT.phone}</a>
-              <LangSwitcher />
             </div>
           </div>
         </div>
