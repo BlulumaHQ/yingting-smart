@@ -8,7 +8,7 @@ import heroB from "@/assets/yt/hero-b.jpg";
 import bgLiving from "@/assets/yt/bg-living.png";
 import bgDisplay from "@/assets/yt/bg-display.png";
 import phoneCutout from "@/assets/yt/phone-cutout.png";
-import aboutElevator from "@/assets/yt/about-elevator.webp";
+import aboutElevator from "@/assets/yt/about-elevator.png";
 
 /* Subtle brand-tinted line decoration — replaces the brown photographic
    backdrops with something cohesive to the cyan/teal identity. */
