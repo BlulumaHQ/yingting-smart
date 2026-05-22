@@ -376,7 +376,7 @@ function Faq() {
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 md:text-right text-eyebrow text-muted-foreground">
-            06 — Frequently Asked
+            04 — Frequently Asked
           </div>
         </div>
 
