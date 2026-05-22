@@ -82,8 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Lovable App" },
       { name: "twitter:description", content: "Elite Home Aesthetic is a website redesign focused on premium visual presentation for smart home technology." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e43eaa5c-5c03-486f-b980-703cb84a92e5/id-preview-34a3ac64--9698d68c-5aef-4412-9aa1-56be530e6d37.lovable.app-1779433814188.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e43eaa5c-5c03-486f-b980-703cb84a92e5/id-preview-34a3ac64--9698d68c-5aef-4412-9aa1-56be530e6d37.lovable.app-1779433814188.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bCCMipaZMMgU3uzBQ48gKBgft2r2/social-images/social-1779438704952-Yingting-Smart-—-Apple-HomeKit-Smart-Living-穎庭國際智能科技.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/bCCMipaZMMgU3uzBQ48gKBgft2r2/social-images/social-1779438704952-Yingting-Smart-—-Apple-HomeKit-Smart-Living-穎庭國際智能科技.webp" },
     ],
     links: [
       {
