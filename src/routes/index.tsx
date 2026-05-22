@@ -168,10 +168,9 @@ function Hero() {
 function About() {
   return (
     <section id="about" className="relative py-28 md:py-44 overflow-hidden">
-      {/* Decorative brand-tinted geometric backdrop */}
-      <img src={frBg01} alt="" aria-hidden
-        className="absolute -top-10 right-0 w-[55%] opacity-70 pointer-events-none select-none
-                   [filter:hue-rotate(170deg)_saturate(1.4)]" />
+      {/* Subtle brand line decoration */}
+      <LineAccent className="absolute -top-24 -right-32 h-[640px] w-[640px]" />
+      <div className="pointer-events-none absolute top-1/3 right-0 h-px w-[28%] bg-gradient-to-r from-transparent to-accent/40" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
         <div className="flex items-end justify-between mb-12 reveal">
           <div className="text-eyebrow text-accent">— About · 關於我們</div>
