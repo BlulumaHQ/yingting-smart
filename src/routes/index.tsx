@@ -513,40 +513,46 @@ function Insights() {
 }
 
 function Contact() {
+  const { t, lang } = useLang();
   return (
     <section id="contact" className="relative py-28 md:py-44 overflow-hidden">
       <img src={bgDisplay} alt="" aria-hidden
         className="absolute inset-0 h-full w-full object-cover opacity-[0.08]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-12">
-        <div className="flex items-end justify-between mb-10 reveal">
+        <div className="flex items-end justify-between mb-10 reveal gap-4">
           <div className="text-eyebrow text-accent">— Contact · 聯絡我們</div>
           <div className="text-eyebrow text-muted-foreground">06 — Contact</div>
         </div>
         <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 lg:col-span-7 reveal">
-            <h2 className="text-display text-5xl md:text-7xl lg:text-8xl">
-              Let's design
-              <br /><span className="italic-serif text-accent">your home.</span>
+          <div className="col-span-12 lg:col-span-7 reveal min-w-0">
+            <h2 className="text-display text-5xl md:text-7xl lg:text-8xl break-words">
+              {lang === "中" ? (
+                <>一起設計<br /><span className="italic-serif text-accent">更懂你的家。</span></>
+              ) : (
+                <>Let's design<br /><span className="italic-serif text-accent">your home.</span></>
+              )}
             </h2>
-            <p className="mt-10 max-w-md text-[15px] leading-[1.85] text-muted-foreground">
-              Visit our showroom in Hsinchu, or reach us by phone or LINE.
-              We'll begin with the way you live, then design the home around it.
+            <p className="mt-10 max-w-md text-[15px] leading-[1.85] text-muted-foreground break-words">
+              {t(
+                "Visit our showroom in Hsinchu, or reach us by phone or LINE. We'll begin with the way you live, then design the home around it.",
+                "歡迎來到我們位於新竹的展示空間，也可以透過電話或 LINE 聯絡我們。我們會先理解你的生活方式，再為你規劃真正適合的智慧家庭。"
+              )}
             </p>
 
             <div className="mt-14 flex flex-wrap gap-4">
               <a href={`tel:${CONTACT.phoneIntl}`}
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors">
-                Call · {CONTACT.phone} <span>→</span>
+                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors max-w-full">
+                {t("Call", "電話")} · {CONTACT.phone} <span>→</span>
               </a>
               <a href={CONTACT.lineUrl} target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors">
+                className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-eyebrow hover:bg-foreground hover:text-background transition-colors max-w-full">
                 LINE · {CONTACT.line}
               </a>
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-5 reveal">
+          <div className="col-span-12 lg:col-span-5 reveal min-w-0">
             <dl className="divide-y divide-border border-y border-border">
               {[
                 { k: "Phone", v: CONTACT.phone, href: `tel:${CONTACT.phoneIntl}` },
@@ -559,8 +565,8 @@ function Contact() {
               ].map((row) => {
                 const inner = (
                   <div className="group grid grid-cols-12 items-baseline gap-4 py-5">
-                    <dt className="col-span-4 text-eyebrow text-muted-foreground">{row.k}</dt>
-                    <dd className="col-span-8 text-base md:text-xl font-light tracking-tight break-words group-hover:text-accent transition-colors">
+                    <dt className="col-span-4 text-eyebrow text-muted-foreground min-w-0">{row.k}</dt>
+                    <dd className="col-span-8 text-base md:text-xl font-light tracking-tight break-words min-w-0 group-hover:text-accent transition-colors">
                       {row.v}
                     </dd>
                   </div>
