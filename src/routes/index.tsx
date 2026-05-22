@@ -23,64 +23,109 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Hero() {
+function HeroSlideA() {
   return (
-    <section id="top" className="relative pt-28 md:pt-40 pb-16 md:pb-24 overflow-hidden">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-12">
-        <div className="reveal in">
-          <div className="flex items-center gap-4 text-eyebrow text-muted-foreground mb-10">
-            <span className="h-px w-10 bg-accent" />
-            <span>Apple HomeKit · Smart Living · Hsinchu</span>
-          </div>
-          <h1 className="text-display text-[13vw] md:text-[8vw] lg:text-[7.5rem] max-w-[14ch]">
-            Smart living,
-            <br /><span className="italic-serif text-accent">redefined.</span>
-          </h1>
+    <div className="mx-auto max-w-[1480px] px-6 md:px-12">
+      <div className="reveal in">
+        <div className="flex items-center gap-4 text-eyebrow text-muted-foreground mb-8">
+          <span className="h-px w-10 bg-accent" />
+          <span>Apple HomeKit · Smart Living 智能生活 · Hsinchu 新竹</span>
         </div>
+        <h1 className="text-display text-[13vw] md:text-[7.5vw] lg:text-[7rem] max-w-[14ch]">
+          Smart living,
+          <br /><span className="italic-serif text-accent">redefined.</span>
+        </h1>
+      </div>
 
-        <div className="mt-16 grid grid-cols-12 gap-6 items-end">
-          <div className="col-span-12 md:col-span-5 reveal in">
-            <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md">
-              Yingting Smart designs and installs Apple HomeKit homes —
-              weaving lighting, climate and voice into the quiet rhythm
-              of daily life, so technology fades and home returns.
-            </p>
-            <div className="mt-10 flex items-center gap-6">
-              <a href="#systems"
-                className="inline-flex items-center gap-3 text-eyebrow text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
-                Explore systems <span aria-hidden>→</span>
-              </a>
-              <a href="#contact"
-                className="text-eyebrow text-muted-foreground hover:text-foreground transition-colors">
-                Book a visit
-              </a>
-            </div>
+      <div className="mt-10 grid grid-cols-12 gap-6 items-center">
+        <div className="col-span-12 md:col-span-5 reveal in">
+          <p className="text-base md:text-[17px] text-muted-foreground leading-[1.8] max-w-md">
+            Yingting Smart designs and installs Apple HomeKit homes —
+            weaving lighting, climate and voice into the quiet rhythm
+            of daily life, so technology fades and home returns.
+          </p>
+          <div className="mt-8 flex items-center gap-6">
+            <a href="#systems"
+              className="inline-flex items-center gap-3 text-eyebrow text-foreground border-b border-foreground pb-1 hover:text-accent hover:border-accent transition-colors">
+              Explore systems <span aria-hidden>→</span>
+            </a>
+            <a href="#contact"
+              className="text-eyebrow text-muted-foreground hover:text-foreground transition-colors">
+              Book a visit
+            </a>
           </div>
-          <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in">
-            <div className="relative aspect-[16/10] overflow-hidden bg-surface">
-              <img src={heroA} alt="Yingting Smart living showcase" fetchPriority="high"
-                className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-background/15 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-eyebrow">
-                <span className="bg-background/85 backdrop-blur px-3 py-1.5">Apple HomeKit</span>
-                <span className="bg-background/85 backdrop-blur px-3 py-1.5">2026 · Showroom</span>
-              </div>
+        </div>
+        <div className="col-span-12 md:col-span-7 md:col-start-6 reveal in -mt-6 md:-mt-16">
+          <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+            <img src={heroA} alt="Yingting Smart living showcase" fetchPriority="high"
+              className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-background/15 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-eyebrow">
+              <span className="bg-background/85 backdrop-blur px-3 py-1.5">Apple HomeKit</span>
+              <span className="bg-background/85 backdrop-blur px-3 py-1.5">2026 · Showroom</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="mt-24 md:mt-32 border-y border-border py-5 overflow-hidden">
+function HeroSlideB() {
+  return (
+    <div className="absolute inset-0">
+      <img src={heroB} alt="Smart home atmosphere" className="absolute inset-0 h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/10" />
+      <div className="relative h-full mx-auto max-w-[1480px] px-6 md:px-12 flex flex-col justify-end pb-20 md:pb-28">
+        <div className="max-w-2xl">
+          <div className="flex items-center gap-4 text-eyebrow text-foreground/90 mb-6">
+            <span className="h-px w-10 bg-accent" />
+            <span>The Quiet Home 靜謐之家</span>
+          </div>
+          <h2 className="text-display text-white text-5xl md:text-7xl lg:text-[6.5rem] [text-shadow:0_2px_24px_rgba(0,0,0,0.18)]">
+            A home that<br /><span className="italic-serif text-accent">listens.</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Hero() {
+  const [slide, setSlide] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setSlide((s) => (s + 1) % 2), 7000);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <section id="top" className="relative pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden">
+      <div className="relative min-h-[78vh] md:min-h-[82vh]">
+        <div className={`transition-opacity duration-[1400ms] ease-out ${slide === 0 ? "opacity-100" : "opacity-0 pointer-events-none absolute inset-0"}`}>
+          <HeroSlideA />
+        </div>
+        <div className={`absolute inset-0 transition-opacity duration-[1400ms] ease-out ${slide === 1 ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <HeroSlideB />
+        </div>
+        {/* slide indicator */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3">
+          {[0,1].map((i) => (
+            <button key={i} onClick={() => setSlide(i)} aria-label={`Slide ${i+1}`}
+              className={`h-px transition-all duration-700 ${slide === i ? "w-12 bg-accent" : "w-6 bg-border"}`} />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-16 md:mt-20 border-y border-border py-5 overflow-hidden">
         <div className="flex gap-12 whitespace-nowrap text-eyebrow text-muted-foreground animate-[scroll_45s_linear_infinite]">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="flex items-center gap-12">
               <span className="text-foreground">Apple HomeKit</span>
               <span className="text-accent">✦</span>
-              <span>Smart Home Design</span>
+              <span>Smart Home Design 智能設計</span>
               <span className="text-accent">✦</span>
-              <span>Lighting · Climate · Voice</span>
+              <span>Lighting · Climate · Voice 燈光 · 空調 · 語音</span>
               <span className="text-accent">✦</span>
-              <span>Hsinchu · Xiangshan</span>
+              <span>Hsinchu · Xiangshan 新竹 香山</span>
               <span className="text-accent">✦</span>
             </span>
           ))}
@@ -90,6 +135,7 @@ function Hero() {
     </section>
   );
 }
+
 
 function About() {
   return (
