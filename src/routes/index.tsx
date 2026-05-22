@@ -256,7 +256,7 @@ function About() {
 }
 
 function Systems() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
     <section id="systems" className="relative py-28 md:py-44 bg-[var(--color-surface-2)] overflow-hidden">
       <div className="mx-auto max-w-[1480px] px-6 md:px-12">
@@ -265,9 +265,10 @@ function Systems() {
             <div className="text-eyebrow text-accent mb-6">— Systems · 智能整合</div>
 
             <h2 className="text-display-md text-4xl md:text-6xl lg:text-7xl break-words">
-              {t(
-                <>Smart systems that<br />feel <span className="italic-serif">natural.</span></>,
+              {lang === "中" ? (
                 <>自然融入生活的<br /><span className="italic-serif">智慧系統。</span></>
+              ) : (
+                <>Smart systems that<br />feel <span className="italic-serif">natural.</span></>
               )}
             </h2>
           </div>
@@ -311,9 +312,10 @@ function Systems() {
           <div className="col-span-12 md:col-span-5 md:order-2 min-w-0">
             <div className="text-eyebrow text-accent mb-6">— Showroom · 展示中心</div>
             <h3 className="text-display-md text-3xl md:text-5xl break-words">
-              {t(
-                <>The daily ritual,<br /><span className="italic-serif">a single touch away.</span></>,
+              {lang === "中" ? (
                 <>日常的儀式，<br /><span className="italic-serif">只在一觸之間。</span></>
+              ) : (
+                <>The daily ritual,<br /><span className="italic-serif">a single touch away.</span></>
               )}
             </h3>
             <p className="mt-8 text-muted-foreground leading-[1.85] max-w-md break-words">
