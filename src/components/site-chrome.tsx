@@ -52,12 +52,12 @@ export function SiteNav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`site-header fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border" : ""
       }`}
     >
-      <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-3 md:px-12 md:py-4">
-        <Link to="/" className="flex items-center" aria-label="穎庭智能 — Home">
+      <div className="mobile-header-inner mx-auto flex max-w-[1480px] items-center justify-between px-6 py-3 md:px-12 md:py-4">
+        <Link to="/" className="header-logo flex items-center" aria-label="穎庭智能 — Home">
           <img src={logo} alt="穎庭智能 Yingting Smart" width={96} height={96}
             className="h-16 w-auto md:h-20" />
         </Link>
@@ -78,7 +78,7 @@ export function SiteNav() {
             {CONTACT.phone}
           </a>
         </div>
-        <div className="md:hidden flex items-center gap-4">
+        <div className="mobile-header-actions md:hidden flex items-center gap-4">
           <LangSwitcher />
           <button aria-label="Menu" onClick={() => setOpen(v => !v)} className="flex flex-col gap-1.5">
             <span className={`block h-px w-7 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />

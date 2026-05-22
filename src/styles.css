@@ -122,40 +122,85 @@
   .hairline { height: 1px; background: var(--color-border); }
 }
 
-/* ===== Global mobile safety rules ============================== */
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
+/* ===== Conservative mobile layout fixes ======================== */
 *, *::before, *::after { box-sizing: border-box; }
 
 @media (max-width: 767px) {
-  body { overflow-x: hidden; }
+  .site-header {
+    min-height: 132px;
+    height: 132px;
+    overflow: visible;
+  }
 
-  section, header, footer, main { max-width: 100vw; }
+  .mobile-header-inner {
+    width: 100%;
+    min-height: 132px;
+    padding: 24px 32px;
+  }
 
-  img, video, svg, canvas {
-    max-width: 100%;
+  .header-logo,
+  .header-logo img {
+    width: 96px;
+    max-width: 96px;
     height: auto;
+    display: block;
+    flex-shrink: 0;
   }
 
-  /* Any grid/flex child should be allowed to shrink below content width */
-  .grid > *, .flex > * { min-width: 0; }
-
-  /* Long words / urls / chinese should always wrap */
-  h1, h2, h3, h4, p, a, span, dd, dt, li {
-    overflow-wrap: break-word;
-    word-break: normal;
+  .mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
   }
 
-  /* Floating sticky contact bar stays inside viewport */
-  .mobile-sticky-contact {
-    width: calc(100% - 32px);
-    left: 16px;
-    right: 16px;
-    max-width: calc(100% - 32px);
+  .about-section,
+  .contact-section {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .about-section .section-inner,
+  .contact-section .section-inner {
+    width: auto;
+    max-width: none;
+    margin-left: 32px;
+    margin-right: 32px;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+  .about-section h1,
+  .about-section h2,
+  .about-section p,
+  .contact-section h1,
+  .contact-section h2,
+  .contact-section p {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .about-image,
+  .about-image img,
+  .about-grid,
+  .contact-copy,
+  .contact-actions,
+  .contact-details {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .contact-actions a {
+    max-width: 100%;
+    white-space: normal;
   }
 }
 
