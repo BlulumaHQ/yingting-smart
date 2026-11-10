@@ -62,7 +62,7 @@ function NewsDetail() {
           <div className="text-eyebrow text-muted-foreground reveal in">
             <Link to="/" className="hover:text-accent">{t("Home", "首頁")}</Link>
             <span className="mx-3 text-border">/</span>
-            <Link to="/#journal" className="hover:text-accent">{t("Journal", "專欄")}</Link>
+            <Link to="/" hash="journal" className="hover:text-accent">{t("Journal", "專欄")}</Link>
             <span className="mx-3 text-border">/</span>
             <span className="text-foreground">{category}</span>
           </div>
