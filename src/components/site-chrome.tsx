@@ -243,7 +243,7 @@ export function SiteFooter() {
               className="text-background hover:text-accent transition-colors underline underline-offset-4 decoration-background/30">
               BluLuma
             </a>
-          </div>
+          {" "}<span className="block mt-1 opacity-80" data-concept-note>Design concept for portfolio purposes only. Not the official website of Yingting Smart.</span></div>
           <div className="opacity-80">統編 {CONTACT.taxId}</div>
         </div>
       </div>
